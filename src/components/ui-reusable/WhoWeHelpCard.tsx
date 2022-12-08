@@ -26,7 +26,7 @@ const WhoWeHelpCard: FC<WhoWeHelpCardProps> = ({
           ? "flex-[8] lg:flex-[3.5]"
           : "relative flex-[2] bg-dark lg:flex-[0.5]"
       } ease-out-flex  cursor-pointer justify-center transition-[flex] duration-[0.7s]`}
-      onClick={() => setActiveWhoWeHelp(id)}
+      onClick={() => setActiveWhoWeHelp(id || "")}
     >
       {active_who_we_help !== id ? (
         <div className="absolute z-0  flex h-full w-full items-center justify-center border text-[3rem] font-semibold text-white">
