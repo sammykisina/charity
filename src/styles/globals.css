@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Noto";
+  src: url("../assets/fonts/Noto_Serif/NotoSerif-Regular.ttf");
+  font-family: 500;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../assets/fonts/Nunito_Sans/NunitoSans-Regular.ttf");
+  font-family: 500;
+}
+
+:root {
+  --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@layer base {
+  * {
+    @apply font-nunito;
+  }
+}
+
+@layer components {
+  .active {
+    @apply bg-light;
+  }
+
+  .route_icon {
+    @apply h-6 w-6;
+  }
+
+  /* drop down */
+  .dropdown_content {
+    @apply absolute top-[calc(100%+5px)] right-0 overflow-hidden rounded-xl  border border-dark bg-white px-[2px] py-[10px] shadow-md;
+  }
+  .dropdown_content {
+    transform-origin: top right;
+    transform: scale(0);
+    transition: transform 0.3s ease 0s;
+  }
+  .dropdown_content.active {
+    transform: scale(1);
+    transition: transform 0.5s var(--transition-cubic);
+  }
+
+  .circle {
+    background: conic-gradient(#ffd249 290deg, #fff 290deg);
+  }
+
+  .circle:before {
+    content: "";
+    position: absolute;
+    height: 90%;
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 50%;
+  }
+}
