@@ -14,7 +14,7 @@ const useClickOutside = (
   }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (!ref.current?.contains(event.target)) handle();
+    if (!ref.current?.contains(event.target as Node)) handle();
   };
 };
 
