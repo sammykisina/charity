@@ -11,7 +11,7 @@ export type Route = {
 };
 
 interface Info {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   image: StaticImageData;
@@ -26,4 +26,4 @@ export interface WhoWeHelp extends Info {
   icon: ReactNode;
 }
 
-export type Role = 'DONOR' | "ORGANIZATION"
+export type Role = "DONOR" | "ORGANIZATION";

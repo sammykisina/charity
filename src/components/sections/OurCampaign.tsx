@@ -7,7 +7,7 @@ import {
   campaignImageThree,
   campaignImageTwo,
 } from "@/assets";
-import { Campaign as CampaignType } from "src/types/typings.t";
+import { type Campaign as CampaignType } from "src/types/typings.t";
 
 const OurCampaign = () => {
   /**
