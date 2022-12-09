@@ -14,9 +14,7 @@ import {
 
 const Home: NextPage = () => {
   // const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
-  const { data: session } = useSession();
-
-  console.log("session", session);
+  // const { data: session } = useSession();
 
   return (
     <>

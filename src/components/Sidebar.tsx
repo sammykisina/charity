@@ -71,7 +71,10 @@ const Sidebar = () => {
         <Button
           icon={<TbLogout />}
           title="Log Out"
-          purpose={() => signOut()}
+          purpose={() => {
+            // router.re("/");
+            signOut();
+          }}
           type="large"
           intent="secondary"
           full_width

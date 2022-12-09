@@ -23,6 +23,7 @@ export { default as NavLink } from "./ui-html/NavLink";
 export { default as Button } from "./ui-html/Button";
 export { default as ScrollableCampaignRow } from "./ui-html/ScrollableCampaignRow";
 export { default as Dropdown } from "./ui-html/dropdown/Dropdown";
+export { default as SpinnerLoader } from "./ui-html/SpinnerLoader";
 
 /**
  * Home Page Sections
