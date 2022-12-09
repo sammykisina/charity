@@ -26,7 +26,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className="relative z-50 flex h-screen flex-col justify-between bg-dark pt-4  duration-300"
+      className="relative z-50 flex h-screen flex-col justify-between bg-dark p-4 pt-[3.1rem] duration-300"
       ref={sidebar_ref}
     >
       <Icon
@@ -67,18 +67,16 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="-mt-2">
-        {session && (
-          <Button
-            icon={<TbLogout />}
-            title="Log Out"
-            purpose={() => signOut()}
-            type="large"
-            intent="secondary"
-            full_width
-          />
-        )}
-      </div>
+      {session && (
+        <Button
+          icon={<TbLogout />}
+          title="Log Out"
+          purpose={() => signOut()}
+          type="large"
+          intent="secondary"
+          full_width
+        />
+      )}
     </aside>
   );
 };
