@@ -30,7 +30,7 @@ const Dropdown: FC<DropdownProps> = ({
     <div className="relative z-50" ref={dropdown_component_ref}>
       <Icon
         icon={icon}
-        icon_wrapper_styles={`relative text-gray-900 hover:bg-dark p-2 rounded-full hover:text-white text-2xl z-40 ${
+        icon_wrapper_styles={`relative p-2 z-40 topnav_bar_icon ${
           display_state && "bg-dark text-white"
         }`}
         purpose={() => setDisplayState((prev) => !prev)}

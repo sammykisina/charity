@@ -1,10 +1,22 @@
 import React, { useState } from "react";
-import { Icon, Logo, Button, Dropdown, Profile } from "@/components";
+import {
+  Icon,
+  Logo,
+  Button,
+  Dropdown,
+  Profile,
+  Notifications,
+  Messages,
+} from "@/components";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { useSetRecoilState } from "recoil";
 import { showSidebarState } from "src/atoms/AppAtom";
 import { signIn, useSession } from "next-auth/react";
-import { HiOutlineUser } from "react-icons/hi2";
+import {
+  HiOutlineBell,
+  HiOutlineEnvelope,
+  HiOutlineUser,
+} from "react-icons/hi2";
 
 const TopNavBar = () => {
   /**
@@ -13,6 +25,10 @@ const TopNavBar = () => {
   const setShowSidebar = useSetRecoilState(showSidebarState);
   const { data: session } = useSession();
   const [show_profile_dropdown, setShowProfileDropdown] =
+    useState<boolean>(false);
+  const [show_notification_dropdown, setShowNotificationDropdown] =
+    useState<boolean>(false);
+  const [show_messages_dropdown, setShowMessagesDropdown] =
     useState<boolean>(false);
 
   return (
@@ -41,12 +57,30 @@ const TopNavBar = () => {
         )}
 
         {session ? (
-          <Dropdown
-            icon={<HiOutlineUser />}
-            dropdown_component={<Profile />}
-            display_state={show_profile_dropdown}
-            setDisplayState={setShowProfileDropdown}
-          />
+          <div className="flex items-center gap-x-4">
+            <div className="flex items-center gap-x-1">
+              <Dropdown
+                icon={<HiOutlineBell />}
+                dropdown_component={<Notifications />}
+                display_state={show_notification_dropdown}
+                setDisplayState={setShowNotificationDropdown}
+              />
+
+              <Dropdown
+                icon={<HiOutlineEnvelope />}
+                dropdown_component={<Messages />}
+                display_state={show_messages_dropdown}
+                setDisplayState={setShowMessagesDropdown}
+              />
+            </div>
+
+            <Dropdown
+              icon={<HiOutlineUser />}
+              dropdown_component={<Profile />}
+              display_state={show_profile_dropdown}
+              setDisplayState={setShowProfileDropdown}
+            />
+          </div>
         ) : (
           <Button title="Login" purpose={() => signIn()} type="medium" />
         )}

@@ -37,3 +37,5 @@ export { default as ReadyBanner } from "./sections/ReadyBanner";
  * Components To Be Used In Dropdown
  */
 export { default as Profile } from "./ui-html/dropdown/dropdown-components/Profile";
+export { default as Notifications } from "./ui-html/dropdown/dropdown-components/Notifications";
+export { default as Messages } from "./ui-html/dropdown/dropdown-components/Messages";
