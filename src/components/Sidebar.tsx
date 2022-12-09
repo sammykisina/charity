@@ -37,12 +37,8 @@ const Sidebar = () => {
       <div>
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="">
-            <div className="flex h-[2.5rem] w-[2.5rem] items-end justify-center rounded-full border border-white">
-              <Logo logo_styles="text-white " />
-            </div>
-
-            <span></span>
+          <div className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-full border border-white">
+            <Logo logo_styles="text-white " />
           </div>
 
           <div className=" flex flex-1 flex-col">
