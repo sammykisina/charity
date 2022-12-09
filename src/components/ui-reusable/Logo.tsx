@@ -4,7 +4,7 @@ import { Icon } from "@/components";
 import { BsHeartHalf } from "react-icons/bs";
 
 interface LogoProps {
-  logo_styles: string;
+  logo_styles?: string;
 }
 
 const Logo: FC<LogoProps> = ({ logo_styles }) => {
