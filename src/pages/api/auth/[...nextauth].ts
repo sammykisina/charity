@@ -35,6 +35,10 @@ export const authOptions: NextAuthOptions = {
     }),
     // ...add more providers here
   ],
+  pages: {
+    signIn: "/auth/signin",
+    // error: "/auth/error", // Error code passed in query string as ?error=
+  },
   debug: true,
 };
 
