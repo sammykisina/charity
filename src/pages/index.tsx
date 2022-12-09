@@ -24,7 +24,7 @@ const Home: NextPage = () => {
         <title>SCD</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="h-[41rem] overflow-y-scroll  py-4 scrollbar-hide">
+      <main className="h-[45rem] overflow-y-scroll py-4  scrollbar-hide md:h-[41rem]">
         <div>
           {/* Hero */}
           <Hero />
