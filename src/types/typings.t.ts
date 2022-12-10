@@ -4,9 +4,9 @@ import type { ReactNode } from "react";
 export type HTMLElementType = "small" | "medium" | "large";
 
 export type Route = {
-  inactive_icon: ReactNode;
-  active_icon: ReactNode;
-  name: string;
+  inactive_icon?: ReactNode;
+  active_icon?: ReactNode;
+  name?: string;
   to: string;
 };
 

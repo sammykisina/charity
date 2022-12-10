@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Button,
   Icon,
+  NavLink,
   OrgAnalysisCard,
   OrgDashboardFundraisingCard,
   Select,
@@ -71,7 +72,7 @@ const Organization = () => {
         {/* Graph And Fundraising */}
         <section className="flex flex-col gap-3 lg:grid lg:grid-cols-3">
           {/* Graph */}
-          <section className="h-[20rem] rounded-[2rem] bg-white lg:col-span-2"></section>
+          <section className="h-[28rem] rounded-[2rem] bg-white lg:col-span-2 lg:h-[24rem]"></section>
 
           {/* Fundraising */}
           <section className="h-[28rem] rounded-[2rem] bg-white py-3 px-5 lg:h-[24rem] lg:px-2">
@@ -101,7 +102,12 @@ const Organization = () => {
 
             {/* View More Button */}
             <div className="mt-6 flex justify-center">
-              <Button title="View More" type="medium" intent="secondary" />
+              {/* <Button title="View More" type="medium" intent="secondary" /> */}
+              <NavLink
+                type="medium"
+                route={{ to: "/fundraising", name: "View More" }}
+                active
+              />
             </div>
           </section>
         </section>

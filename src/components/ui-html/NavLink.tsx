@@ -42,7 +42,7 @@ const NavLink: FC<NavLinkProps> = ({ full_width, type, route, active }) => {
           {active ? route.active_icon : route.inactive_icon}
         </div>
 
-        <span> {route.name}</span>
+        <span>{route.name}</span>
       </div>
     </Link>
   );
