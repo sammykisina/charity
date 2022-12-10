@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Button,
   Icon,
   OrgAnalysisCard,
   OrgDashboardFundraisingCard,
@@ -73,7 +74,7 @@ const Organization = () => {
           <section className="h-[20rem] rounded-[2rem] bg-white lg:col-span-2"></section>
 
           {/* Fundraising */}
-          <section className="h-[25rem] rounded-[2rem] bg-white py-3 px-5 lg:h-[20rem] lg:px-2">
+          <section className="h-[28rem] rounded-[2rem] bg-white py-3 px-5 lg:h-[24rem] lg:px-2">
             <div className="flex items-center justify-between ">
               {/* Title */}
               <span className="text-lg font-bold tracking-wider text-dark/80 lg:text-[1rem]">
@@ -97,6 +98,11 @@ const Organization = () => {
                   />
                 ))}
             </section>
+
+            {/* View More Button */}
+            <div className="mt-6 flex justify-center">
+              <Button title="View More" type="medium" intent="secondary" />
+            </div>
           </section>
         </section>
 
