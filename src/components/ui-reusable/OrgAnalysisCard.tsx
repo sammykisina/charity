@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { AnalysisData } from "src/types/typings.t";
+import type { FC } from "react";
+import type { AnalysisData } from "src/types/typings.t";
 import { Icon } from "@/components";
 import { HiEllipsisHorizontal } from "react-icons/hi2";
 import { generateNumberWithCommas } from "src/utils/app";

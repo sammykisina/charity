@@ -24,7 +24,7 @@ const Organization = () => {
         multiple={false}
         options={filter_period_options}
         select_wrapper_styles="bg-white rounded-[0.9rem] py-4  w-[10rem]"
-        select_panel_styles="max-h-[10rem] bg-white"
+        select_panel_styles="max-h-[10rem] bg-white border border-dark shadow-md"
         selected={selected_period}
         setSelected={setSelectedPeriod}
       />
