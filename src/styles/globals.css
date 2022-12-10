@@ -63,6 +63,10 @@
     @apply rounded-full  text-2xl text-dark hover:bg-dark hover:text-white;
   }
 
+  .icon {
+    @apply topnav_bar_icon  w-fit  text-[1.5rem] duration-300 hover:bg-dark hover:text-white;
+  }
+
   /* drop down */
   .dropdown_content {
     @apply absolute top-[calc(100%+5px)] right-0 overflow-hidden rounded-xl  border border-dark bg-white px-[2px] py-[10px] shadow-md;

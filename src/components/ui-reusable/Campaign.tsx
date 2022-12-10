@@ -29,8 +29,6 @@ const Campaign: FC<CampaignProps> = ({
     target_donation_amount,
     donated_amount
   );
-  // const progress_percentage = `w-[` + percentage + `%]`;
-  // console.log("progress_percentage", progress_percentage);
 
   return (
     <section className="h-[25rem] rounded-[1rem] bg-gray/40 p-2">

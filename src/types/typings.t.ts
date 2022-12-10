@@ -32,3 +32,11 @@ export type SelectionOption = {
   name: string;
   value: string;
 };
+
+export type AnalysisData = {
+  title: string;
+  amount: number;
+  updated_status: string;
+  difference: string;
+  filter: string;
+};

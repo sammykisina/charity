@@ -14,6 +14,7 @@ export { default as Campaign } from "./ui-reusable/Campaign";
 export { default as ProgressBar } from "./ui-reusable/ProgressBar";
 export { default as WhoWeHelpCard } from "./ui-reusable/WhoWeHelpCard";
 export { default as SectionTitle } from "./ui-reusable/SectionTitle";
+export { default as OrgAnalysisCard } from "./ui-reusable/OrgAnalysisCard";
 
 /**
  * UI HTML
