@@ -15,7 +15,7 @@ const OrgAnalysisCard: FC<OrgAnalysisCardProps> = ({
 }) => {
   return (
     <section
-      className={`rounded-[2rem] px-3 py-8 text-dark  ${
+      className={`rounded-[2rem] px-6 py-8 text-dark  ${
         analysis.title === "Total Donation" ? "bg-yellow" : "bg-white"
       }`}
     >
