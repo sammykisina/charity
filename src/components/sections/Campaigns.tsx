@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { whoWeHelpData } from "@/constants";
-import { SectionTitle, WhoWeHelpCard } from "@/components";
+import { campaigns } from "@/constants";
+import { CampaignCard, SectionTitle } from "@/components";
 
 const WhoDoWeHelp = () => {
   /**
    * Section States
    */
-  const [active_who_we_help, setActiveWhoWeHelp] = useState<string>("humanity");
+  const [active_campaign, setActiveCampaign] = useState<string>("humanity");
 
   return (
     <section className="mt-[7rem]">
@@ -24,13 +24,13 @@ const WhoDoWeHelp = () => {
         className="w-full"
       >
         <div className="mt-[1rem] flex h-[60rem] flex-col gap-1  px-4 lg:h-[30rem]  lg:flex-row ">
-          {whoWeHelpData.map((who_we_help, who_we_help_index) => (
-            <WhoWeHelpCard
-              key={who_we_help_index}
-              index={who_we_help_index}
-              active_who_we_help={active_who_we_help}
-              setActiveWhoWeHelp={setActiveWhoWeHelp}
-              who_we_help={who_we_help}
+          {campaigns.map((campaign, campaign_index) => (
+            <CampaignCard
+              key={campaign_index}
+              index={campaign_index}
+              active_campaign={active_campaign}
+              setActiveCampaign={setActiveCampaign}
+              campaign={campaign}
             />
           ))}
         </div>

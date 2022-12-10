@@ -18,13 +18,16 @@ interface Info {
 }
 
 export interface Campaign extends Info {
-  target_donation_amount: number;
-  donated_amount: number;
-}
-
-export interface WhoWeHelp extends Info {
   icon: ReactNode;
 }
+
+export type Fundraising = {
+  title: string;
+  description: string;
+  target_donation_amount: number;
+  donated_amount: number;
+  campaign?: string;
+};
 
 export type Role = "DONOR" | "ORGANIZATION";
 

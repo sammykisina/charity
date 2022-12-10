@@ -1,24 +1,24 @@
 import Image from "next/image";
 import type { FC } from "react";
-import type { Campaign as CampaignType } from "src/types/typings.t";
+import type { Fundraising as FundraisingType } from "src/types/typings.t";
 import {
   calculatePercentage,
-  classNames,
   generateNumberWithCommas,
+  getFundraisingImage,
 } from "src/utils/app";
-import ProgressBar from "./ProgressBar";
+import { ProgressBar } from "@/components";
 
-interface CampaignProps {
-  campaign: CampaignType;
+interface FundraisingProps {
+  fundraising: FundraisingType;
 }
 
-const Campaign: FC<CampaignProps> = ({
-  campaign: {
+const Fundraising: FC<FundraisingProps> = ({
+  fundraising: {
     title,
     description,
-    image,
     target_donation_amount,
     donated_amount,
+    campaign,
   },
 }) => {
   /**
@@ -34,9 +34,9 @@ const Campaign: FC<CampaignProps> = ({
     <section className="h-[25rem] rounded-[1rem] bg-gray/40 p-2">
       <div className="h-[10rem] w-[15rem] overflow-hidden ">
         <Image
-          src={image}
+          src={getFundraisingImage(campaign)}
           alt=""
-          className="h-[10rem] w-[15rem]  rounded-[1.8rem] border object-cover"
+          className="h-[10rem] w-[15rem]  rounded-[1.8rem]  object-cover"
         />
       </div>
 
@@ -78,4 +78,4 @@ const Campaign: FC<CampaignProps> = ({
   );
 };
 
-export default Campaign;
+export default Fundraising;

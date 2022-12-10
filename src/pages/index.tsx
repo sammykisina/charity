@@ -5,11 +5,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
 import {
+  Campaigns,
   Hero,
   OrgThatSupportUs,
-  OurCampaign,
+  OurFundraising,
   ReadyBanner,
-  WhoDoWeHelp,
 } from "@/components";
 
 const Home: NextPage = () => {
@@ -28,10 +28,10 @@ const Home: NextPage = () => {
           <Hero />
 
           {/* OurCampaign */}
-          <OurCampaign />
+          <OurFundraising />
 
           {/* Who Do We Help */}
-          <WhoDoWeHelp />
+          <Campaigns />
 
           {/* Org That Support Us */}
           <OrgThatSupportUs />

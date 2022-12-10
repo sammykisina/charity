@@ -1,16 +1,12 @@
 /**
  * Images
  */
-export { default as campaignImageOne } from "./images/campaign/campaign_image_one.jpg";
-export { default as campaignImageTwo } from "./images/campaign/campaign_image_two.jpg";
-export { default as campaignImageThree } from "./images/campaign/campaign_image_three.jpg";
-export { default as campaignImageFour } from "./images/campaign/campaign_image_four.jpg";
-
-export { default as humanityImage } from "./images/who-do-we-help/humanity.jpg";
-export { default as educationImage } from "./images/who-do-we-help/education.jpg";
-export { default as environmentImage } from "./images/who-do-we-help/environment.jpg";
-export { default as medicalImage } from "./images/who-do-we-help/medical.jpg";
-export { default as naturalDisasterImage } from "./images/who-do-we-help/natural_disaster.jpg";
+export { default as humanityImage } from "./images/campaigns/humanity.jpg";
+export { default as educationImage } from "./images/campaigns/education.jpg";
+export { default as environmentImage } from "./images/campaigns/environment.jpg";
+export { default as medicalImage } from "./images/campaigns/medical.jpg";
+export { default as naturalDisasterImage } from "./images/campaigns/natural_disaster.jpg";
+export { default as fundraisingImage } from "./images/campaigns/fundraisingImage.jpg";
 
 /**
  * SVGs

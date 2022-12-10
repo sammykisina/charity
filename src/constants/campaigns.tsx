@@ -9,9 +9,9 @@ import { BsVectorPen } from "react-icons/bs";
 import { HiEmojiHappy } from "react-icons/hi";
 import { FiCloudRain, FiFeather } from "react-icons/fi";
 import { TbActivityHeartbeat } from "react-icons/tb";
-import type { WhoWeHelp } from "src/types/typings.t";
+import { type Campaign } from "src/types/typings.t";
 
-const whoWeHelpData: WhoWeHelp[] = [
+const Campaigns: Campaign[] = [
   {
     id: "humanity",
     image: humanityImage,
@@ -54,4 +54,4 @@ const whoWeHelpData: WhoWeHelp[] = [
   },
 ];
 
-export default whoWeHelpData;
+export default Campaigns;

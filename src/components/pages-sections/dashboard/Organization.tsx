@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { OrgAnalysisCard, Select } from "@/components";
+import { Icon, OrgAnalysisCard, Select } from "@/components";
 import { AnalysisData, type SelectionOption } from "src/types/typings.t";
 import { filter_period_options } from "@/constants";
+import { HiArrowUpRight } from "react-icons/hi2";
 
 const Organization = () => {
   /**
@@ -67,7 +68,22 @@ const Organization = () => {
           <section className="h-[20rem] rounded-[2rem] bg-white lg:col-span-2"></section>
 
           {/* Fundraising */}
-          <section className="h-[20rem] rounded-[2rem] bg-white"></section>
+          <section className="h-[20rem] rounded-[2rem] bg-white py-3 px-6">
+            <div className="flex items-center justify-between ">
+              {/* Title */}
+              <span className="text-lg font-bold tracking-wider text-dark/80">
+                Your Fundraising
+              </span>
+
+              <Icon
+                icon={<HiArrowUpRight />}
+                icon_wrapper_styles="text-[1.5rem] text-dark/50"
+              />
+            </div>
+
+            {/* List Of Fundraising With Most Donated Amount */}
+            <section></section>
+          </section>
         </section>
 
         {/* Donation table */}
