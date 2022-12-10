@@ -34,7 +34,7 @@ const Fundraising: FC<FundraisingProps> = ({
     <section className="h-[25rem] rounded-[1rem] bg-gray/40 p-2">
       <div className="h-[10rem] w-[15rem] overflow-hidden ">
         <Image
-          src={getFundraisingImage(campaign)}
+          src={getFundraisingImage(campaign || "")}
           alt=""
           className="h-[10rem] w-[15rem]  rounded-[1.8rem]  object-cover"
         />
