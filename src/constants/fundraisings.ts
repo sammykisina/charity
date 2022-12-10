@@ -6,7 +6,7 @@ const fundraisings: Fundraising[] = [
     description:
       "Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,",
     target_donation_amount: 32050,
-    donated_amount: 1000,
+    donated_amount: 29000,
     campaign: "education",
   },
   {
@@ -14,7 +14,7 @@ const fundraisings: Fundraising[] = [
     description:
       "Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,",
     target_donation_amount: 47000,
-    donated_amount: 6000,
+    donated_amount: 32000,
     campaign: "humanity",
   },
   {

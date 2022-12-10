@@ -6,7 +6,7 @@ const ProgressBar = ({ done }: { done: number }) => {
       className="h-[0.3rem] rounded-full bg-yellow"
       style={{
         opacity: 1,
-        width: `${done >= 100 ? "100%" : `${done}px`}`,
+        width: `${done >= 100 ? "100%" : `${done}%`}`,
       }}
     ></section>
   );

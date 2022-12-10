@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { Icon, OrgAnalysisCard, Select } from "@/components";
-import { AnalysisData, type SelectionOption } from "src/types/typings.t";
-import { filter_period_options } from "@/constants";
+import {
+  Icon,
+  OrgAnalysisCard,
+  OrgDashboardFundraisingCard,
+  Select,
+} from "@/components";
+import { type SelectionOption } from "src/types/typings.t";
+import { filter_period_options, fundraisings } from "@/constants";
 import { HiArrowUpRight } from "react-icons/hi2";
 
 const Organization = () => {
@@ -24,7 +29,7 @@ const Organization = () => {
         setSelected={setSelectedPeriod}
       />
 
-      <section className="mt-6 h-[40rem]  gap-4  space-y-4 overflow-y-scroll pt-2 scrollbar-hide">
+      <section className="mt-6 h-[36.5rem]  gap-4  space-y-4 overflow-y-scroll pt-2 scrollbar-hide">
         {/* Top Analysis */}
         <section className="grid grid-cols-1 gap-2 xs:grid-cols-2 sm:flex sm:flex-col sm:gap-4 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3">
           <OrgAnalysisCard
@@ -68,10 +73,10 @@ const Organization = () => {
           <section className="h-[20rem] rounded-[2rem] bg-white lg:col-span-2"></section>
 
           {/* Fundraising */}
-          <section className="h-[20rem] rounded-[2rem] bg-white py-3 px-6">
+          <section className="h-[25rem] rounded-[2rem] bg-white py-3 px-5 lg:h-[20rem] lg:px-2">
             <div className="flex items-center justify-between ">
               {/* Title */}
-              <span className="text-lg font-bold tracking-wider text-dark/80">
+              <span className="text-lg font-bold tracking-wider text-dark/80 lg:text-[1rem]">
                 Your Fundraising
               </span>
 
@@ -82,7 +87,16 @@ const Organization = () => {
             </div>
 
             {/* List Of Fundraising With Most Donated Amount */}
-            <section></section>
+            <section className="flex flex-col gap-8">
+              {fundraisings
+                .slice(0, 2)
+                .map((single_fundraising, single_fundraising_index) => (
+                  <OrgDashboardFundraisingCard
+                    key={single_fundraising_index}
+                    fundraising={single_fundraising}
+                  />
+                ))}
+            </section>
           </section>
         </section>
 

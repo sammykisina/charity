@@ -6,7 +6,6 @@ import {
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React from "react";
-import { SelectionOption } from "src/types/typings.t";
 
 const Dashboard = () => {
   /**
@@ -19,10 +18,6 @@ const Dashboard = () => {
       push("auth/signin");
     },
   });
-
-  // const option: SelectionOption = { name: "come", value: "came" };
-
-  // console.log("type", typeof option);
 
   return (
     <section>

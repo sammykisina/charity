@@ -1,12 +1,6 @@
-import {
-  educationImage,
-  environmentImage,
-  humanityImage,
-  medicalImage,
-  naturalDisasterImage,
-  fundraisingImage,
-} from "@/assets";
+import { campaigns } from "@/constants";
 import { type StaticImageData } from "next/image";
+import type { Campaign } from "src/types/typings.t";
 
 export const classNames = (...classes: any): string => {
   return classes.filter(Boolean).join(" ");
@@ -24,27 +18,30 @@ export const generateNumberWithCommas = (number: number) => {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-export const getFundraisingImage = (campaign_id: string): StaticImageData => {
-  let image = null;
+export const getFundraisingCampaignInfo = (
+  campaign_id: string
+): Campaign | null => {
+  let campaignInfo: Campaign | null = null;
+
   switch (campaign_id) {
     case "humanity":
-      image = humanityImage;
+      campaignInfo = campaigns[0] || null;
       break;
     case "education":
-      image = educationImage;
+      campaignInfo = campaigns[1] || null;
       break;
     case "medical":
-      image = medicalImage;
+      campaignInfo = campaigns[2] || null;
       break;
     case "natural_disaster":
-      image = naturalDisasterImage;
+      campaignInfo = campaigns[3] || null;
       break;
     case "environment":
-      image = environmentImage;
+      campaignInfo = campaigns[4] || null;
       break;
     default:
-      image = fundraisingImage;
+      campaignInfo = campaigns[4] || null;
   }
 
-  return image;
+  return campaignInfo;
 };
