@@ -24,6 +24,7 @@ export { default as Button } from "./ui-html/Button";
 export { default as ScrollableCampaignRow } from "./ui-html/ScrollableCampaignRow";
 export { default as Dropdown } from "./ui-html/dropdown/Dropdown";
 export { default as SpinnerLoader } from "./ui-html/SpinnerLoader";
+export { default as Select } from "./ui-html/Select";
 
 /**
  * Home Page Sections
@@ -40,3 +41,9 @@ export { default as ReadyBanner } from "./sections/ReadyBanner";
 export { default as Profile } from "./ui-html/dropdown/dropdown-components/Profile";
 export { default as Notifications } from "./ui-html/dropdown/dropdown-components/Notifications";
 export { default as Messages } from "./ui-html/dropdown/dropdown-components/Messages";
+
+/**
+ * Components To Be Used In Different Pages
+ */
+export { default as OrganizationDashboard } from "./pages-sections/dashboard/Organization";
+export { default as DonorDashboard } from "./pages-sections/dashboard/Donor";

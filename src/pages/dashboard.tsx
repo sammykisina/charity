@@ -1,7 +1,12 @@
-import { SpinnerLoader } from "@/components";
+import {
+  DonorDashboard,
+  OrganizationDashboard,
+  SpinnerLoader,
+} from "@/components";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React from "react";
+import { SelectionOption } from "src/types/typings.t";
 
 const Dashboard = () => {
   /**
@@ -15,7 +20,9 @@ const Dashboard = () => {
     },
   });
 
-  console.log("status", status);
+  // const option: SelectionOption = { name: "come", value: "came" };
+
+  // console.log("type", typeof option);
 
   return (
     <section>
@@ -24,7 +31,13 @@ const Dashboard = () => {
           <SpinnerLoader />
         </div>
       ) : (
-        <section>{session.user?.role === "ORGANIZATION"}</section>
+        <section>
+          {session.user?.role === "ORGANIZATION" ? (
+            <OrganizationDashboard />
+          ) : (
+            <DonorDashboard />
+          )}
+        </section>
       )}
     </section>
   );

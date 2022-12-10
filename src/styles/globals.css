@@ -23,6 +23,10 @@
     @apply font-nunito;
   }
 
+  body {
+    @apply bg-[#f8f8fa];
+  }
+
   /* Modifying the scroll bar */
   ::-webkit-scrollbar {
     width: 16px;

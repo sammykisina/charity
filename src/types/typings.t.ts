@@ -27,3 +27,8 @@ export interface WhoWeHelp extends Info {
 }
 
 export type Role = "DONOR" | "ORGANIZATION";
+
+export type SelectionOption = {
+  name: string;
+  value: string;
+};
