@@ -28,6 +28,7 @@ export { default as Dropdown } from "./ui-html/dropdown/Dropdown";
 export { default as SpinnerLoader } from "./ui-html/SpinnerLoader";
 export { default as Select } from "./ui-html/Select";
 export { default as Line } from "./ui-html/charts/Line";
+export { default as Table } from "./ui-html/table/Table";
 
 /**
  * Home Page Sections

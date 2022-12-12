@@ -12,3 +12,4 @@ export { default as fundraisingImage } from "./images/campaigns/fundraisingImage
  * SVGs
  */
 export { default as Curve } from "./svgs/home/curve.svg";
+export { default as sort_icons } from "./svgs/sort-icons/sortingIcons";

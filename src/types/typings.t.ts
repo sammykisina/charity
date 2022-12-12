@@ -12,12 +12,20 @@ export type Route = {
 
 interface Info {
   id?: string;
-  title: string;
+  title?: string;
   description: string;
   image: StaticImageData;
 }
 
+export type CampaignTitle =
+  | "Humanity"
+  | "Education"
+  | "Medical"
+  | "Natural Disaster"
+  | "Environment";
+
 export interface Campaign extends Info {
+  title: CampaignTitle;
   icon: ReactNode;
 }
 

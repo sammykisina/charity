@@ -7,11 +7,13 @@ import { generateNumberWithCommas } from "src/utils/app";
 type OrgAnalysisCardProps = {
   analysis: AnalysisData;
   diff_styles?: string;
+  symbol?: string;
 };
 
 const OrgAnalysisCard: FC<OrgAnalysisCardProps> = ({
   analysis,
   diff_styles,
+  symbol,
 }) => {
   return (
     <section
@@ -28,7 +30,7 @@ const OrgAnalysisCard: FC<OrgAnalysisCardProps> = ({
       {/* Amount */}
       <div className="mt-5">
         <span className="text-[1.1rem] font-bold  text-dark/80 duration-300 ">
-          Ksh {""}
+          <span>{symbol}</span> {""}
           {generateNumberWithCommas(analysis.amount)}
         </span>
         <span className="ml-2 whitespace-nowrap text-xs font-semibold tracking-wider text-dark/50">

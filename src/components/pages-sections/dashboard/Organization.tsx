@@ -7,14 +7,25 @@ import {
   OrgAnalysisCard,
   OrgDashboardFundraisingCard,
   Select,
+  Table,
 } from "@/components";
-import { type SelectionOption } from "src/types/typings.t";
+import { CampaignTitle, type SelectionOption } from "src/types/typings.t";
 import {
   filter_donation_analytic_options,
   filter_period_options,
   fundraisings,
 } from "@/constants";
 import { HiArrowUpRight } from "react-icons/hi2";
+import { createColumnHelper } from "@tanstack/react-table";
+import { format, subDays } from "date-fns";
+
+export type Donation = {
+  owner: string;
+  location: string;
+  type: CampaignTitle;
+  date: Date;
+  amount: number;
+};
 
 const Organization = () => {
   /**
@@ -23,7 +34,7 @@ const Organization = () => {
   const [selected_period, setSelectedPeriod] = useState<SelectionOption>(
     filter_period_options[0] || { name: "", value: "" }
   );
-
+  const start_date = new Date();
   const [
     selected_filter_donation_analytic_option,
     setSelectedFilterDonationAnalyticOption,
@@ -31,8 +42,111 @@ const Organization = () => {
     filter_donation_analytic_options[0] || { name: "", value: "" }
   );
 
+  const donations: Donation[] = [
+    {
+      owner: "Sammy Kisina",
+      location: "Nairobi",
+      type: "Education",
+      amount: 1500,
+      date: subDays(start_date, 2),
+    },
+    {
+      owner: "Jose Mutua",
+      location: "Kisii",
+      type: "Environment",
+      amount: 2000,
+      date: subDays(start_date, 2),
+    },
+    {
+      owner: "Mercy Kaschana",
+      location: "Makueni",
+      type: "Environment",
+      amount: 800,
+      date: subDays(start_date, 4),
+    },
+    {
+      owner: "Ndunge Mutua",
+      location: "Makueni",
+      type: "Natural Disaster",
+      amount: 9000,
+      date: subDays(start_date, 9),
+    },
+    {
+      owner: "Joseph Kioko",
+      location: "Egerton",
+      type: "Humanity",
+      amount: 700,
+      date: subDays(start_date, 10),
+    },
+    {
+      owner: "Mark Legend",
+      location: "Kisimu",
+      type: "Natural Disaster",
+      amount: 50,
+      date: subDays(start_date, 10),
+    },
+    {
+      owner: "Stephen Chalo",
+      location: "Changamwe",
+      type: "Medical",
+      amount: 1000,
+      date: subDays(start_date, 5),
+    },
+    {
+      owner: "John Nzivo",
+      location: "Machakos",
+      type: "Environment",
+      amount: 100,
+      date: subDays(start_date, 5),
+    },
+    {
+      owner: "Leny Muturi",
+      location: "Egerton",
+      type: "Education",
+      amount: 50,
+      date: subDays(start_date, 2),
+    },
+  ];
+
+  const columnHelper = createColumnHelper<Donation>();
+  const columns = [
+    // Grouping Columns
+    columnHelper.group({
+      header: "Donation History",
+      footer: (props) => props.column.id,
+      columns: [
+        // Accessor Column
+        columnHelper.accessor("owner", {
+          cell: (info) => info.getValue(),
+          header: () => "Name",
+          footer: (props) => props.column.id,
+        }),
+        columnHelper.accessor("location", {
+          cell: (info) => info.getValue(),
+          header: () => "Location",
+          footer: (props) => props.column.id,
+        }),
+        columnHelper.accessor("type", {
+          cell: (info) => info.getValue(),
+          header: () => "Type",
+          footer: (props) => props.column.id,
+        }),
+        columnHelper.accessor("date", {
+          cell: (info) => format(info.getValue(), "EE, MMM d, yyy"),
+          header: () => "Date",
+          footer: (props) => props.column.id,
+        }),
+        columnHelper.accessor("amount", {
+          cell: (info) => info.getValue(),
+          header: () => "Amount",
+          footer: (props) => props.column.id,
+        }),
+      ],
+    }),
+  ];
+
   return (
-    <section className="px-4">
+    <section className="">
       {/* Period Select */}
       <Select
         multiple={false}
@@ -54,22 +168,25 @@ const Organization = () => {
               difference: "+3.21",
               filter: `Than` + selected_period,
             }}
+            symbol="Ksh"
           />
           <OrgAnalysisCard
             analysis={{
               title: "Donation Today",
               amount: 33260,
+
               updated_status: "Updated 30m ago",
               difference: "+2.32%",
               filter: `Than yesterday`,
             }}
             diff_styles="text-[#46ABDF]"
+            symbol="Ksh"
           />
           <div className="justify-center xs:col-span-2 xs:flex lg:col-span-1">
             <div className="xs:w-3/4 sm:w-full md:w-3/4 lg:w-full xl:w-full">
               <OrgAnalysisCard
                 analysis={{
-                  title: "Total Donor",
+                  title: "Total Donors",
                   amount: 10243,
                   updated_status: "Updated 1d ago",
                   difference: "-1.82",
@@ -164,7 +281,9 @@ const Organization = () => {
         </section>
 
         {/* Donation table */}
-        <section className="h-[25rem] w-full rounded-[2rem] bg-white"></section>
+        <section className=" h-[25rem] w-full rounded-[2rem] bg-white ">
+          <Table data={donations} columns={columns} show_filters={false} />
+        </section>
       </section>
     </section>
   );
