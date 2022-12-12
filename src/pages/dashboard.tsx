@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
     <section>
       {status === "loading" ? (
-        <div className="flex h-[25rem] items-center justify-center">
+        <div className="flex h-[25rem] items-center justify-center bg-red-500">
           <SpinnerLoader />
         </div>
       ) : (

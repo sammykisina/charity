@@ -61,15 +61,15 @@ const Select: FC<SelectProps> = ({
 
     if (Array.isArray(selected)) {
       checkIfOptionIsInSelectedArray(option)
-        ? (active_option_styles = "bg-yellow/20 tracking-wider ")
+        ? (active_option_styles = "bg-yellow/20")
         : "";
     } else {
       typeof option === "object"
         ? option?.name.toLowerCase() === selected.name.toLowerCase()
-          ? (active_option_styles = "bg-yellow/20  tracking-wider ")
+          ? (active_option_styles = "bg-yellow/20 ")
           : ""
         : option.toLowerCase() === selected.toLowerCase()
-        ? (active_option_styles = "bg-yellow/20  tracking-wider ")
+        ? (active_option_styles = "bg-yellow/20   ")
         : "";
     }
 
@@ -101,7 +101,7 @@ const Select: FC<SelectProps> = ({
     <section
       ref={select_ref}
       tabIndex={0}
-      className={`relative cursor-pointer gap-[0.5rem]  py-3 px-2 outline-none  ${select_wrapper_styles}`}
+      className={`relative cursor-pointer gap-[0.5rem]  px-2 outline-none  ${select_wrapper_styles}`}
       onClick={() =>
         setIsSelectPanelOpen(
           (prevIsSelectPanelOpenState) => !prevIsSelectPanelOpenState
@@ -155,7 +155,7 @@ const Select: FC<SelectProps> = ({
               setIsSelectPanelOpen(false);
             }}
             key={option_index}
-            className={`w-fit rounded-2xl px-2 py-1 font-semibold capitalize duration-300 hover:bg-yellow hover:font-normal hover:tracking-wider hover:text-white ${getActiveOptionClass(
+            className={`w-fit rounded-2xl px-2 py-1 font-semibold capitalize duration-300 hover:bg-yellow hover:font-normal hover:text-white ${getActiveOptionClass(
               option
             )}`}
           >
