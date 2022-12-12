@@ -37,13 +37,13 @@ const Organization = () => {
       <Select
         multiple={false}
         options={filter_period_options}
-        select_wrapper_styles="bg-white rounded-[0.9rem] py-4  w-[10rem]"
+        select_wrapper_styles="bg-white rounded-[0.9rem] py-4 w-[10rem]"
         select_panel_styles="max-h-[10rem] bg-white border border-dark shadow-md"
         selected={selected_period}
         setSelected={setSelectedPeriod}
       />
 
-      <section className="mt-6 h-[36rem]  gap-4  space-y-4 overflow-y-scroll pt-2 scrollbar-hide">
+      <section className="mt-2 h-[37rem] gap-4 space-y-4  overflow-y-scroll  pt-2 scrollbar-hide">
         {/* Top Analysis */}
         <section className="grid grid-cols-1 gap-2 xs:grid-cols-2 sm:flex sm:flex-col sm:gap-4 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3">
           <OrgAnalysisCard
