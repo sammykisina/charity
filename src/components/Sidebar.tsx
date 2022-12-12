@@ -60,7 +60,7 @@ const Sidebar = () => {
               key={route_index}
               route={route}
               type="medium"
-              full_width
+              full_width={true}
               active={router?.pathname === route.to && true}
             />
           ))}
