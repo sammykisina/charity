@@ -7,7 +7,7 @@ import useDetectScroll from "src/hooks/useDetectScroll";
 import { type Route } from "src/types/typings.t";
 
 const navlink_styles = cva(
-  "flex items-center rounded-full hover:bg-light  focus:outline-none w-fit px-4 py-2 text-white gap-3 duration-300",
+  "flex items-center rounded-full hover:bg-light  focus:outline-none w-full px-4 py-2 text-white gap-3 duration-300",
   {
     variants: {
       type: {
@@ -19,7 +19,7 @@ const navlink_styles = cva(
         true: "w-full",
       },
       active: {
-        true: "bg-light",
+        true: "bg-light w-full",
       },
     },
   }
