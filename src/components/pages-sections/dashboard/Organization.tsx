@@ -43,7 +43,7 @@ const Organization = () => {
         setSelected={setSelectedPeriod}
       />
 
-      <section className="mt-2 h-[37rem] gap-4 space-y-4  overflow-y-scroll  pt-2 scrollbar-hide">
+      <section className="mt-2 h-[38rem] gap-4 space-y-4 overflow-y-scroll  pt-2  scrollbar-hide xs:h-[37.4rem]">
         {/* Top Analysis */}
         <section className="grid grid-cols-1 gap-2 xs:grid-cols-2 sm:flex sm:flex-col sm:gap-4 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3">
           <OrgAnalysisCard

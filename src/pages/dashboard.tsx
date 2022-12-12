@@ -22,11 +22,11 @@ const Dashboard = () => {
   return (
     <section>
       {status === "loading" ? (
-        <div className="flex h-[25rem] items-center justify-center bg-red-500">
+        <div className="flex h-[25rem] items-center justify-center">
           <SpinnerLoader />
         </div>
       ) : (
-        <section>
+        <section className="h-fit">
           {session.user?.role === "ORGANIZATION" ? (
             <OrganizationDashboard />
           ) : (

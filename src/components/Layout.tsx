@@ -28,6 +28,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
         {/* The Main */}
         <main className="sm:ml-[220px]">{children}</main>
       </div>
+
+      {/* Lower Nav Bar */}
+      {/* <div>
+        <Footer />
+      </div> */}
     </section>
   );
 };
