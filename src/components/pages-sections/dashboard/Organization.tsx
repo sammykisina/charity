@@ -282,7 +282,7 @@ const Organization = () => {
 
         {/* Donation table */}
         <section className=" h-[25rem] w-full rounded-[2rem] bg-white ">
-          <Table data={donations} columns={columns} show_filters={true} />
+          <Table data={donations} columns={columns} show_filters={false} />
         </section>
       </section>
     </section>

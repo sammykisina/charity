@@ -11,17 +11,22 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import type { ColumnFiltersState, FilterFn } from "@tanstack/react-table";
+import type {
+  ColumnFiltersState,
+  FilterFn,
+  ColumnDef,
+} from "@tanstack/react-table";
 import {
   RankingInfo,
   rankItem,
   compareItems,
 } from "@tanstack/match-sorter-utils";
 import { sort_icons } from "@/assets";
+import { Donation } from "src/components/pages-sections/dashboard/Organization";
 
 type TableProps = {
-  data: any[];
-  columns: any[];
+  data: Donation[];
+  columns: ColumnDef<Donation, unknown>[];
   show_filters: boolean;
 };
 
