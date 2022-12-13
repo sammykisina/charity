@@ -44,6 +44,14 @@ export type SelectionOption = {
   value: string;
 };
 
+export type Donation = {
+  owner: string;
+  location: string;
+  type: CampaignTitle;
+  date: Date;
+  amount: number;
+};
+
 export type AnalysisData = {
   title: string;
   amount: number;

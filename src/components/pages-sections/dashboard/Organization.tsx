@@ -9,7 +9,11 @@ import {
   Select,
   Table,
 } from "@/components";
-import { CampaignTitle, type SelectionOption } from "src/types/typings.t";
+import {
+  CampaignTitle,
+  Donation,
+  type SelectionOption,
+} from "src/types/typings.t";
 import {
   filter_donation_analytic_options,
   filter_period_options,
@@ -19,13 +23,13 @@ import { HiArrowUpRight } from "react-icons/hi2";
 import { createColumnHelper } from "@tanstack/react-table";
 import { format, subDays } from "date-fns";
 
-export type Donation = {
-  owner: string;
-  location: string;
-  type: CampaignTitle;
-  date: Date;
-  amount: number;
-};
+// export type Donation = {
+//   owner: string;
+//   location: string;
+//   type: CampaignTitle;
+//   date: Date;
+//   amount: number;
+// };
 
 const Organization = () => {
   /**
