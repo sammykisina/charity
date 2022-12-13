@@ -42,111 +42,111 @@ const Organization = () => {
     filter_donation_analytic_options[0] || { name: "", value: "" }
   );
 
-  const donations: Donation[] = useMemo(
+  const donations: Donation[] = [
+    {
+      owner: "Sammy Kisina",
+      location: "Nairobi",
+      type: "Education",
+      amount: 1500,
+      date: subDays(start_date, 2),
+    },
+    {
+      owner: "Jose Mutua",
+      location: "Kisii",
+      type: "Environment",
+      amount: 2000,
+      date: subDays(start_date, 2),
+    },
+    {
+      owner: "Mercy Kaschana",
+      location: "Makueni",
+      type: "Environment",
+      amount: 800,
+      date: subDays(start_date, 4),
+    },
+    {
+      owner: "Ndunge Mutua",
+      location: "Makueni",
+      type: "Natural Disaster",
+      amount: 9000,
+      date: subDays(start_date, 9),
+    },
+    {
+      owner: "Joseph Kioko",
+      location: "Egerton",
+      type: "Humanity",
+      amount: 700,
+      date: subDays(start_date, 10),
+    },
+    {
+      owner: "Mark Legend",
+      location: "Kisimu",
+      type: "Natural Disaster",
+      amount: 50,
+      date: subDays(start_date, 10),
+    },
+    {
+      owner: "Stephen Chalo",
+      location: "Changamwe",
+      type: "Medical",
+      amount: 1000,
+      date: subDays(start_date, 5),
+    },
+    {
+      owner: "John Nzivo",
+      location: "Machakos",
+      type: "Environment",
+      amount: 100,
+      date: subDays(start_date, 5),
+    },
+    {
+      owner: "Leny Muturi",
+      location: "Egerton",
+      type: "Education",
+      amount: 50,
+      date: subDays(start_date, 2),
+    },
+  ];
+
+  const columnHelper = createColumnHelper<Donation>();
+  const columns = useMemo(
     () => [
-      {
-        owner: "Sammy Kisina",
-        location: "Nairobi",
-        type: "Education",
-        amount: 1500,
-        date: subDays(start_date, 2),
-      },
-      {
-        owner: "Jose Mutua",
-        location: "Kisii",
-        type: "Environment",
-        amount: 2000,
-        date: subDays(start_date, 2),
-      },
-      {
-        owner: "Mercy Kaschana",
-        location: "Makueni",
-        type: "Environment",
-        amount: 800,
-        date: subDays(start_date, 4),
-      },
-      {
-        owner: "Ndunge Mutua",
-        location: "Makueni",
-        type: "Natural Disaster",
-        amount: 9000,
-        date: subDays(start_date, 9),
-      },
-      {
-        owner: "Joseph Kioko",
-        location: "Egerton",
-        type: "Humanity",
-        amount: 700,
-        date: subDays(start_date, 10),
-      },
-      {
-        owner: "Mark Legend",
-        location: "Kisimu",
-        type: "Natural Disaster",
-        amount: 50,
-        date: subDays(start_date, 10),
-      },
-      {
-        owner: "Stephen Chalo",
-        location: "Changamwe",
-        type: "Medical",
-        amount: 1000,
-        date: subDays(start_date, 5),
-      },
-      {
-        owner: "John Nzivo",
-        location: "Machakos",
-        type: "Environment",
-        amount: 100,
-        date: subDays(start_date, 5),
-      },
-      {
-        owner: "Leny Muturi",
-        location: "Egerton",
-        type: "Education",
-        amount: 50,
-        date: subDays(start_date, 2),
-      },
+      // Grouping Columns
+      columnHelper.group({
+        header: "Donation History",
+        footer: (props) => props.column.id,
+        columns: [
+          // Accessor Column
+          columnHelper.accessor("owner", {
+            cell: (info) => info.getValue(),
+            header: () => "Name",
+            footer: (props) => props.column.id,
+          }),
+          columnHelper.accessor("location", {
+            cell: (info) => info.getValue(),
+            header: () => "Location",
+            footer: (props) => props.column.id,
+          }),
+          columnHelper.accessor("type", {
+            cell: (info) => info.getValue(),
+            header: () => "Type",
+            footer: (props) => props.column.id,
+          }),
+          columnHelper.accessor("date", {
+            cell: (info) => format(info.getValue(), "EE, MMM d, yyy"),
+            header: () => "Date",
+            footer: (props) => props.column.id,
+          }),
+          columnHelper.accessor("amount", {
+            cell: (info) => info.getValue(),
+            header: () => "Amount",
+            footer: (props) => props.column.id,
+          }),
+        ],
+      }),
     ],
     []
   );
-
-  const columnHelper = createColumnHelper<Donation>();
-  const columns = [
-    // Grouping Columns
-    columnHelper.group({
-      header: "Donation History",
-      footer: (props) => props.column.id,
-      columns: [
-        // Accessor Column
-        columnHelper.accessor("owner", {
-          cell: (info) => info.getValue(),
-          header: () => "Name",
-          footer: (props) => props.column.id,
-        }),
-        columnHelper.accessor("location", {
-          cell: (info) => info.getValue(),
-          header: () => "Location",
-          footer: (props) => props.column.id,
-        }),
-        columnHelper.accessor("type", {
-          cell: (info) => info.getValue(),
-          header: () => "Type",
-          footer: (props) => props.column.id,
-        }),
-        columnHelper.accessor("date", {
-          cell: (info) => format(info.getValue(), "EE, MMM d, yyy"),
-          header: () => "Date",
-          footer: (props) => props.column.id,
-        }),
-        columnHelper.accessor("amount", {
-          cell: (info) => info.getValue(),
-          header: () => "Amount",
-          footer: (props) => props.column.id,
-        }),
-      ],
-    }),
-  ];
 
   return (
     <section className="">

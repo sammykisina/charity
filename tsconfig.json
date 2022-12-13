@@ -27,6 +27,6 @@
       "@/hooks": ["src/hooks"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "src/components/ui-html/table/Table.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "src/components/ui-html/table/Table.tsx"],
   "exclude": ["node_modules"]
 }

@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import type { FC } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -10,6 +11,7 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
+import type { ColumnFiltersState, FilterFn } from "@tanstack/react-table";
 import {
   RankingInfo,
   rankItem,
@@ -17,18 +19,18 @@ import {
 } from "@tanstack/match-sorter-utils";
 import { sort_icons } from "@/assets";
 
-// type TableProps = {
-//   data: any[];
-//   columns: any[];
-//   show_filters: boolean;
-// };
+type TableProps = {
+  data: any[];
+  columns: any[];
+  show_filters: boolean;
+};
 
-const Table = ({ data, columns, show_filters }) => {
+const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
   /**
    * Component States
    */
 
-  const fuzzyFilter = (row, columnId, value, addMeta) => {
+  const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
     // Rank the item
     const itemRank = rankItem(row.getValue(columnId), value);
 
@@ -74,7 +76,11 @@ const Table = ({ data, columns, show_filters }) => {
     onChange,
     debounce = 500,
     ...props
-  }) {
+  }: {
+    value: string | number;
+    onChange: (value: string | number) => void;
+    debounce?: number;
+  } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
     const [value, setValue] = useState(initialValue);
 
     useEffect(() => {
