@@ -44,7 +44,7 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
   };
 
   const [globalFilter, setGlobalFilter] = useState("");
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  // const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const { SortIcon, SortDownIcon, SortUpIcon } = sort_icons;
   const table = useReactTable({
     data,
@@ -53,22 +53,22 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
       fuzzy: fuzzyFilter,
     },
     state: {
-      columnFilters,
+      // columnFilters,
       globalFilter,
     },
-    onColumnFiltersChange: setColumnFilters,
+    // onColumnFiltersChange: setColumnFilters,
     onGlobalFilterChange: setGlobalFilter,
     globalFilterFn: fuzzyFilter,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues(),
-    getFacetedMinMaxValues: getFacetedMinMaxValues(),
-    debugTable: true,
-    debugHeaders: true,
-    debugColumns: false,
+    // getPaginationRowModel: getPaginationRowModel(),
+    // getFacetedRowModel: getFacetedRowModel(),
+    // getFacetedUniqueValues: getFacetedUniqueValues(),
+    // getFacetedMinMaxValues: getFacetedMinMaxValues(),
+    // debugTable: true,
+    // debugHeaders: true,
+    // debugColumns: false,
   });
 
   function DebouncedInput({
