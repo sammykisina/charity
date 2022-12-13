@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import {
   Button,
+  DateCell,
   Icon,
   Line,
   NavLink,
@@ -112,45 +113,56 @@ const Organization = () => {
     },
   ];
 
-  const columnHelper = createColumnHelper<Donation>();
   const columns = useMemo(
     () => [
-      // Grouping Columns
-      columnHelper.group({
-        header: "Donation History",
-        footer: (props) => props.column.id,
+      {
+        Header: "Donation History",
         columns: [
-          // Accessor Column
-          columnHelper.accessor("owner", {
-            cell: (info) => info.getValue(),
-            header: () => "Name",
-            footer: (props) => props.column.id,
-          }),
-          columnHelper.accessor("location", {
-            cell: (info) => info.getValue(),
-            header: () => "Location",
-            footer: (props) => props.column.id,
-          }),
-          columnHelper.accessor("type", {
-            cell: (info) => info.getValue(),
-            header: () => "Type",
-            footer: (props) => props.column.id,
-          }),
-          columnHelper.accessor("date", {
-            cell: (info) => format(info.getValue(), "EE, MMM d, yyy"),
-            header: () => "Date",
-            footer: (props) => props.column.id,
-          }),
-          columnHelper.accessor("amount", {
-            cell: (info) => info.getValue(),
-            header: () => "Amount",
-            footer: (props) => props.column.id,
-          }),
+          {
+            Header: "Name",
+            accessor: "owner",
+          },
+          {
+            Header: "Location",
+            accessor: "location",
+          },
+          {
+            Header: "Type",
+            accessor: "type",
+          },
+          {
+            Header: "Date",
+            accessor: "date",
+            Cell: DateCell,
+          },
+          {
+            Header: "amount",
+            accessor: "amount",
+          },
         ],
-      }),
+      },
     ],
     []
   );
+
+  const org_dashboard_donations = () => {
+    let org_dashboard_donations_data = [] as any;
+
+    donations.map((donation) => {
+      org_dashboard_donations_data = [
+        ...org_dashboard_donations_data,
+        {
+          owner: donation.owner,
+          location: donation.location,
+          type: donation.type,
+          date: donation.date,
+          amount: donation.amount,
+        },
+      ];
+    });
+
+    return org_dashboard_donations_data;
+  };
 
   return (
     <section className="">
@@ -289,7 +301,12 @@ const Organization = () => {
 
         {/* Donation table */}
         <section className=" h-[25rem] w-full rounded-[2rem] bg-white ">
-          <Table data={donations} columns={columns} show_filters={true} />
+          <Table
+            data={org_dashboard_donations()}
+            columns={columns}
+            show_filters={false}
+            table_height=""
+          />
         </section>
       </section>
     </section>
