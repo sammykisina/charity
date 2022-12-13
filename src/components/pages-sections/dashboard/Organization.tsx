@@ -165,7 +165,7 @@ const Organization = () => {
   };
 
   return (
-    <section className="">
+    <section className="px-4">
       {/* Period Select */}
       <Select
         multiple={false}

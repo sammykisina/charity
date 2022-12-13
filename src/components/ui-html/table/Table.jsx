@@ -45,7 +45,7 @@ const Table = ({
   const { SortIcon, SortDownIcon, SortUpIcon } = sort_icons;
 
   return (
-    <section>
+    <section className="pb-2">
       {show_filters && (
         <section className={`flex flex-col justify-start gap-3  px-2`}>
           {/* the global search section */}
@@ -76,13 +76,13 @@ const Table = ({
           show_filters ? table_height : "h-fit"
         }`}
       >
-        <div className="w-full overflow-auto rounded-lg border scrollbar-hide">
+        <div className="w-full overflow-auto  rounded-[2rem] border border-gray/50 scrollbar-hide">
           <table
             {...getTableProps()}
-            className="divide-gray-200 mx-auto w-full  min-w-full max-w-4xl divide-y overflow-hidden whitespace-nowrap  rounded-lg bg-white"
+            className="mx-auto w-full min-w-full  max-w-4xl divide-y divide-gray overflow-hidden whitespace-nowrap   bg-white"
           >
             {/* the table head */}
-            <thead className="bg-gray-50">
+            <thead className=" ">
               {headerGroups.map((header_group, header_group_index) => (
                 <tr
                   key={header_group_index}
@@ -92,21 +92,21 @@ const Table = ({
                     <th
                       key={column_index}
                       scope="col"
-                      className="text-gray-500 group px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                      className="group px-6 py-3 text-left    text-xs font-semibold uppercase tracking-wider text-dark"
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-start">
                         {column.render("Header")}
                         {/* Add a sort direction indicator */}
                         <span>
                           {column.isSorted ? (
                             column.isSortedDesc ? (
-                              <SortDownIcon className="text-c_gray h-5 w-5" />
+                              <SortDownIcon class_name="h-5 w-5 text-gray" />
                             ) : (
-                              <SortUpIcon className="text-c_gray h-5 w-5" />
+                              <SortUpIcon class_name="h-5 w-5 text-gray" />
                             )
                           ) : (
-                            <SortIcon className="text-c_gray h-5  w-5 opacity-0 group-hover:opacity-100" />
+                            <SortIcon class_name="h-5 w-5  text-gray opacity-0 group-hover:opacity-100" />
                           )}
                         </span>
                       </div>
@@ -118,25 +118,20 @@ const Table = ({
             {/* the table body */}
             <tbody
               {...getTableBodyProps()}
-              className="divide-gray-200 divide-y bg-white duration-300"
+              className="divide-y divide-gray bg-white duration-300"
             >
               {rows.map((row, i) => {
                 // new
                 prepareRow(row);
                 return (
                   <Fragment key={i}>
-                    <tr
-                      {...row.getRowProps()}
-                      className={`${
-                        row.depth === 0 ? "bg-white" : "bg-c_green_light/10 "
-                      }`}
-                    >
+                    <tr {...row.getRowProps()}>
                       {row.cells.map((cell, cell_index) => {
                         return (
                           <td
                             key={cell_index}
                             {...cell.getCellProps()}
-                            className="w-[325px] max-w-[325px] truncate whitespace-nowrap px-6 py-2 text-sm first-letter:capitalize hover:break-words"
+                            className="w-[325px] max-w-[325px] truncate whitespace-nowrap px-6 py-2 text-sm font-semibold text-dark/80 first-letter:capitalize hover:break-words"
                             role="cell"
                           >
                             {cell.column.Cell.name === "defaultRenderer" ? (
