@@ -1,7 +1,6 @@
 import React, { FC, Fragment, useState } from "react";
 import {
   useReactTable,
-  type ColumnFiltersState,
   getCoreRowModel,
   getFilteredRowModel,
   getFacetedRowModel,
@@ -9,9 +8,9 @@ import {
   getFacetedMinMaxValues,
   getPaginationRowModel,
   getSortedRowModel,
-  type FilterFn,
   flexRender,
 } from "@tanstack/react-table";
+import type { ColumnFiltersState, FilterFn } from "@tanstack/react-table";
 import {
   RankingInfo,
   rankItem,
