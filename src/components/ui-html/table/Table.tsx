@@ -46,7 +46,7 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
   };
 
   const [globalFilter, setGlobalFilter] = useState("");
-  // const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const { SortIcon, SortDownIcon, SortUpIcon } = sort_icons;
   const table = useReactTable({
     data,
@@ -55,22 +55,19 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
       fuzzy: fuzzyFilter,
     },
     state: {
-      // columnFilters,
+      columnFilters,
       globalFilter,
     },
-    // onColumnFiltersChange: setColumnFilters,
+    onColumnFiltersChange: setColumnFilters,
     onGlobalFilterChange: setGlobalFilter,
     globalFilterFn: fuzzyFilter,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    // getPaginationRowModel: getPaginationRowModel(),
-    // getFacetedRowModel: getFacetedRowModel(),
-    // getFacetedUniqueValues: getFacetedUniqueValues(),
-    // getFacetedMinMaxValues: getFacetedMinMaxValues(),
-    // debugTable: true,
-    // debugHeaders: true,
-    // debugColumns: false,
+    getPaginationRowModel: getPaginationRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
+    getFacetedMinMaxValues: getFacetedMinMaxValues(),
   });
 
   function DebouncedInput({
@@ -159,20 +156,20 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
                             {header.isPlaceholder ? null : (
                               <>
                                 <div
-                                // {...{
-                                //   className: header.column.getCanSort()
-                                //     ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
-                                //     : "",
-                                //   onClick:
-                                //     header.column.getToggleSortingHandler(),
-                                // }}
+                                  {...{
+                                    className: header.column.getCanSort()
+                                      ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
+                                      : "",
+                                    onClick:
+                                      header.column.getToggleSortingHandler(),
+                                  }}
                                 >
                                   {header.column.columnDef.header &&
                                     flexRender(
                                       header.column.columnDef.header,
                                       header.getContext()
                                     )}
-                                  {/* {{
+                                  {{
                                     asc: (
                                       <SortUpIcon class_name="text-gray h-5 w-5" />
                                     ),
@@ -181,7 +178,7 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
                                     ),
                                   }[header.column.getIsSorted() as string] ?? (
                                     <SortIcon class_name="text-gray h-5  w-5 opacity-0 group-hover:opacity-100" />
-                                  )} */}
+                                  )}
                                 </div>
                               </>
                             )}
