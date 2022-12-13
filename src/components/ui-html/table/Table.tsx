@@ -11,22 +11,17 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import type {
-  ColumnFiltersState,
-  FilterFn,
-  ColumnDef,
-} from "@tanstack/react-table";
+import type { ColumnFiltersState, FilterFn } from "@tanstack/react-table";
 import {
   RankingInfo,
   rankItem,
   compareItems,
 } from "@tanstack/match-sorter-utils";
 import { sort_icons } from "@/assets";
-import { Donation } from "src/components/pages-sections/dashboard/Organization";
 
 type TableProps = {
-  data: Donation[];
-  columns: ColumnDef<Donation, unknown>[];
+  data: any[];
+  columns: any[];
   show_filters: boolean;
 };
 
@@ -197,7 +192,7 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
             {/* the table body */}
             <tbody className="divide-y divide-gray bg-white duration-300">
               {table.getRowModel() &&
-                table.getRowModel()?.rows.map((row, row_index) => {
+                table.getRowModel().rows.map((row, row_index) => {
                   return (
                     <Fragment key={row_index}>
                       <tr>
