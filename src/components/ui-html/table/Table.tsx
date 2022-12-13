@@ -139,9 +139,9 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
           <table className="mx-auto w-full min-w-full  max-w-4xl divide-y divide-gray/50 overflow-hidden whitespace-nowrap  rounded-lg bg-white">
             {/* the table head */}
             <thead className="">
-              {table.getHeaderGroups().map((headerGroup) => (
+              {table.getHeaderGroups()?.map((headerGroup) => (
                 <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
+                  {headerGroup.headers?.map((header) => (
                     <th
                       key={header.id}
                       scope="col"
