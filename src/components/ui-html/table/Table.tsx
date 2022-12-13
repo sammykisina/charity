@@ -157,13 +157,13 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
                             {header.isPlaceholder ? null : (
                               <>
                                 <div
-                                  {...{
-                                    className: header.column.getCanSort()
-                                      ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
-                                      : "",
-                                    onClick:
-                                      header.column.getToggleSortingHandler(),
-                                  }}
+                                // {...{
+                                //   className: header.column.getCanSort()
+                                //     ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
+                                //     : "",
+                                //   onClick:
+                                //     header.column.getToggleSortingHandler(),
+                                // }}
                                 >
                                   {header.column.columnDef.header &&
                                     flexRender(
