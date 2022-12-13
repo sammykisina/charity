@@ -165,11 +165,12 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
                                       header.column.getToggleSortingHandler(),
                                   }}
                                 >
-                                  {flexRender(
-                                    header.column.columnDef.header,
-                                    header.getContext()
-                                  )}
-                                  {{
+                                  {header.column.columnDef.header &&
+                                    flexRender(
+                                      header.column.columnDef.header,
+                                      header.getContext()
+                                    )}
+                                  {/* {{
                                     asc: (
                                       <SortUpIcon class_name="text-gray h-5 w-5" />
                                     ),
@@ -178,7 +179,7 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
                                     ),
                                   }[header.column.getIsSorted() as string] ?? (
                                     <SortIcon class_name="text-gray h-5  w-5 opacity-0 group-hover:opacity-100" />
-                                  )}
+                                  )} */}
                                 </div>
                               </>
                             )}
