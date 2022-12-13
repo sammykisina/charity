@@ -1,4 +1,5 @@
-import React, { FC, Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import type { FC } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -65,6 +66,9 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
+    debugTable: true,
+    debugHeaders: true,
+    debugColumns: false,
   });
 
   function DebouncedInput({
@@ -77,13 +81,13 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
     onChange: (value: string | number) => void;
     debounce?: number;
   } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
-    const [value, setValue] = React.useState(initialValue);
+    const [value, setValue] = useState(initialValue);
 
-    React.useEffect(() => {
+    useEffect(() => {
       setValue(initialValue);
     }, [initialValue]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       const timeout = setTimeout(() => {
         onChange(value);
       }, debounce);
@@ -139,48 +143,49 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
           <table className="mx-auto w-full min-w-full  max-w-4xl divide-y divide-gray/50 overflow-hidden whitespace-nowrap  rounded-lg bg-white">
             {/* the table head */}
             <thead className="">
-              {table.getHeaderGroups()?.map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers?.map((header) => (
-                    <th
-                      key={header.id}
-                      scope="col"
-                      className="group px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
-                    >
-                      <div className="flex items-center justify-between text-lg font-bold text-dark">
-                        {header.isPlaceholder ? null : (
-                          <>
-                            <div
-                              {...{
-                                className: header.column.getCanSort()
-                                  ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
-                                  : "",
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }}
-                            >
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
-                              {{
-                                asc: (
-                                  <SortUpIcon class_name="text-gray h-5 w-5" />
-                                ),
-                                desc: (
-                                  <SortDownIcon class_name="text-gray h-5 w-5" />
-                                ),
-                              }[header.column.getIsSorted() as string] ?? (
-                                <SortIcon class_name="text-gray h-5  w-5 opacity-0 group-hover:opacity-100" />
-                              )}
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              ))}
+              {table.getHeaderGroups() &&
+                table.getHeaderGroups()?.map((headerGroup) => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers?.map((header) => (
+                      <th
+                        key={header.id}
+                        scope="col"
+                        className="group px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
+                      >
+                        <div className="flex items-center justify-between text-lg font-bold text-dark">
+                          {header.isPlaceholder ? null : (
+                            <>
+                              <div
+                                {...{
+                                  className: header.column.getCanSort()
+                                    ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
+                                    : "",
+                                  onClick:
+                                    header.column.getToggleSortingHandler(),
+                                }}
+                              >
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
+                                {{
+                                  asc: (
+                                    <SortUpIcon class_name="text-gray h-5 w-5" />
+                                  ),
+                                  desc: (
+                                    <SortDownIcon class_name="text-gray h-5 w-5" />
+                                  ),
+                                }[header.column.getIsSorted() as string] ?? (
+                                  <SortIcon class_name="text-gray h-5  w-5 opacity-0 group-hover:opacity-100" />
+                                )}
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
             </thead>
 
             {/* the table body */}
@@ -189,7 +194,7 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
                 return (
                   <Fragment key={row_index}>
                     <tr>
-                      {row.getVisibleCells().map((cell) => {
+                      {row.getVisibleCells()?.map((cell) => {
                         return (
                           <td
                             key={cell.id}
