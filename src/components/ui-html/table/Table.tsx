@@ -146,80 +146,83 @@ const Table: FC<TableProps> = ({ data, columns, show_filters }) => {
               {table.getHeaderGroups() &&
                 table.getHeaderGroups()?.map((headerGroup) => (
                   <tr key={headerGroup.id}>
-                    {headerGroup.headers?.map((header) => (
-                      <th
-                        key={header.id}
-                        scope="col"
-                        className="group px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
-                      >
-                        <div className="flex items-center justify-between text-lg font-bold text-dark">
-                          {header.isPlaceholder ? null : (
-                            <>
-                              <div
-                                {...{
-                                  className: header.column.getCanSort()
-                                    ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
-                                    : "",
-                                  onClick:
-                                    header.column.getToggleSortingHandler(),
-                                }}
-                              >
-                                {flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
-                                {{
-                                  asc: (
-                                    <SortUpIcon class_name="text-gray h-5 w-5" />
-                                  ),
-                                  desc: (
-                                    <SortDownIcon class_name="text-gray h-5 w-5" />
-                                  ),
-                                }[header.column.getIsSorted() as string] ?? (
-                                  <SortIcon class_name="text-gray h-5  w-5 opacity-0 group-hover:opacity-100" />
-                                )}
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </th>
-                    ))}
+                    {headerGroup.headers &&
+                      headerGroup.headers?.map((header) => (
+                        <th
+                          key={header.id}
+                          scope="col"
+                          className="group px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
+                        >
+                          <div className="flex items-center justify-between text-lg font-bold text-dark">
+                            {header.isPlaceholder ? null : (
+                              <>
+                                <div
+                                  {...{
+                                    className: header.column.getCanSort()
+                                      ? "cursor-pointer select-none flex items-center text-dark/50 font-bold text-sm "
+                                      : "",
+                                    onClick:
+                                      header.column.getToggleSortingHandler(),
+                                  }}
+                                >
+                                  {flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext()
+                                  )}
+                                  {{
+                                    asc: (
+                                      <SortUpIcon class_name="text-gray h-5 w-5" />
+                                    ),
+                                    desc: (
+                                      <SortDownIcon class_name="text-gray h-5 w-5" />
+                                    ),
+                                  }[header.column.getIsSorted() as string] ?? (
+                                    <SortIcon class_name="text-gray h-5  w-5 opacity-0 group-hover:opacity-100" />
+                                  )}
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </th>
+                      ))}
                   </tr>
                 ))}
             </thead>
 
             {/* the table body */}
             <tbody className="divide-y divide-gray bg-white duration-300">
-              {table.getRowModel().rows.map((row, row_index) => {
-                return (
-                  <Fragment key={row_index}>
-                    <tr>
-                      {row.getVisibleCells()?.map((cell) => {
-                        return (
-                          <td
-                            key={cell.id}
-                            className="w-[325px] max-w-[325px] truncate whitespace-nowrap px-6 py-2 text-sm font-semibold text-dark/80 first-letter:capitalize hover:break-words "
-                            role="cell"
-                          >
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
-                          </td>
-                        );
-                      })}
-                    </tr>
+              {table.getRowModel() &&
+                table.getRowModel()?.rows.map((row, row_index) => {
+                  return (
+                    <Fragment key={row_index}>
+                      <tr>
+                        {row.getVisibleCells() &&
+                          row.getVisibleCells()?.map((cell) => {
+                            return (
+                              <td
+                                key={cell.id}
+                                className="w-[325px] max-w-[325px] truncate whitespace-nowrap px-6 py-2 text-sm font-semibold text-dark/80 first-letter:capitalize hover:break-words "
+                                role="cell"
+                              >
+                                {flexRender(
+                                  cell.column.columnDef.cell,
+                                  cell.getContext()
+                                )}
+                              </td>
+                            );
+                          })}
+                      </tr>
 
-                    {/* {row.isExpanded ? (
+                      {/* {row.isExpanded ? (
                       <tr>
                         <td colSpan={visibleColumns.length}>
                           {renderRowSubComponent({ row })}
                         </td>
                       </tr>
                     ) : null} */}
-                  </Fragment>
-                );
-              })}
+                    </Fragment>
+                  );
+                })}
             </tbody>
           </table>
         </div>
