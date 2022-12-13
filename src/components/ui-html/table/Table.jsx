@@ -92,7 +92,7 @@ const Table = ({
                     <th
                       key={column_index}
                       scope="col"
-                      className="group px-6 py-3 text-left    text-xs font-semibold uppercase tracking-wider text-dark"
+                      className="group px-6 py-3 text-left    text-xs font-semibold uppercase tracking-wider text-dark/50"
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
                       <div className="flex items-center justify-start">
