@@ -97,7 +97,7 @@ const Organization = () => {
           data={getFundraisings()}
           columns={columns}
           show_filters={true}
-          table_height="h-[29rem] xs:h-[29.5rem] sm:h-[29rem] md:h-[29.5rem]"
+          table_height="h-[30rem] xs:h-[29.5rem] sm:h-[29rem] md:h-[29.5rem]"
         />
       </section>
     </section>
