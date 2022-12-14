@@ -35,7 +35,7 @@ const Filter = ({
    * Set The Current Filter Value
    */
   useEffect(() => {
-    setFilter(selected === "All" ? "" : selected);
+    setFilter(selected === "All" || selected == "campaign" ? "" : selected);
   }, [selected]);
 
   return (
