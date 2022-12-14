@@ -93,4 +93,28 @@
     background-color: #ffffff;
     border-radius: 50%;
   }
+
+  .modal-wrapper {
+    @apply invisible fixed top-0 left-0 z-50  grid h-full w-full  scale-[0] transform place-items-center bg-[#00000080] pt-32 transition-all duration-300 ease-in;
+  }
+
+  .modal-wrapper.show {
+    @apply visible z-50 scale-[1];
+  }
+
+  .modal {
+    @apply relative h-fit max-w-[650px] overflow-clip rounded-3xl bg-white;
+  }
+
+  .input {
+    @apply h-10 w-full border-b-2 border-gray placeholder-transparent scrollbar-hide focus:border-yellow focus:outline-none;
+  }
+
+  .input_label {
+    @apply absolute left-0 -top-3.5 text-dark/50  transition-all peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:text-dark/50 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-dark/50;
+  }
+
+  .error {
+    @apply ml-3 text-xs font-semibold capitalize text-red-400;
+  }
 }

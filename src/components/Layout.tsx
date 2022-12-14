@@ -1,14 +1,25 @@
 import type { ReactNode } from "react";
-import { Footer, Sidebar, TopNavbar } from "@/components";
+import {
+  CreateOrEditFundraising,
+  Footer,
+  Modal,
+  Sidebar,
+  TopNavbar,
+} from "@/components";
 import { useRecoilValue } from "recoil";
 import { showSidebarState } from "src/atoms/AppAtom";
 import { useSession } from "next-auth/react";
+import { modal_atoms } from "@/atoms";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   /**
    * Component States
    */
+  const { show_create_or_edit_fundraising_modal_state } = modal_atoms;
   const show_sidebar = useRecoilValue(showSidebarState);
+  const show_create_or_edit_fundraising_modal = useRecoilValue(
+    show_create_or_edit_fundraising_modal_state
+  );
 
   return (
     <section className="mx-auto max-w-[1200px] sm:px-[20px]">
@@ -29,10 +40,12 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <main className="sm:ml-[220px]">{children}</main>
       </div>
 
-      {/* Lower Nav Bar */}
-      {/* <div>
-        <Footer />
-      </div> */}
+      {/* Modals */}
+      <Modal
+        modal_state={show_create_or_edit_fundraising_modal}
+        modal_styles="w-[90vw] h-[24rem] sm:h-[21.5rem] duration-300"
+        component={<CreateOrEditFundraising />}
+      />
     </section>
   );
 };

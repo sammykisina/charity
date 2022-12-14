@@ -16,6 +16,7 @@ export { default as CampaignCard } from "./ui-reusable/CampaignCard";
 export { default as SectionTitle } from "./ui-reusable/SectionTitle";
 export { default as OrgAnalysisCard } from "./ui-reusable/OrgAnalysisCard";
 export { default as OrgDashboardFundraisingCard } from "./ui-reusable/OrgDashboardFundraisingCard";
+export { default as Error } from "./ui-reusable/Error";
 
 /**
  * UI HTML
@@ -30,6 +31,11 @@ export { default as Select } from "./ui-html/Select";
 export { default as Line } from "./ui-html/charts/Line";
 export { default as Table } from "./ui-html/table/Table";
 export { default as GlobalFilter } from "./ui-html/table/GlobalFilter";
+export { default as Title } from "./ui-html/Title";
+export { default as Modal } from "./ui-html/modal/Modal";
+export { default as ModalClose } from "./ui-html/modal/ModalClose";
+export { default as ModalHeader } from "./ui-html/modal/ModalHeader";
+export { default as Input } from "./ui-html/Input";
 
 /**
  * Home Page Sections
@@ -63,3 +69,8 @@ export { default as LongText } from "./ui-html/table/LongText";
 export { default as CampaignPill } from "./ui-html/table/CampaignPill";
 export { default as CampaignFilter } from "./ui-html/table/filters/CampaignFilter";
 export { default as Filter } from "./ui-html/table/filters/Filter";
+
+/**
+ * Components To Be Used In Modal
+ */
+export { default as CreateOrEditFundraising } from "./ui-html/modal/modal-components/CreateOrEditFundraising";

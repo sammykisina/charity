@@ -24,9 +24,17 @@
       "@/constants": ["src/constants"],
       "@/assets": ["src/assets"],
       "@/routes": ["src/routes"],
-      "@/hooks": ["src/hooks"]
+      "@/hooks": ["src/hooks"],
+      "@/atoms": ["src/atoms"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "src/components/ui-html/table/Table.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.cjs",
+    "**/*.mjs",
+    "src/components/ui-html/table/Table.tsx"
+  ],
   "exclude": ["node_modules"]
 }

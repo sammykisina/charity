@@ -8,14 +8,17 @@ import {
   Table,
 } from "@/components";
 import { fundraisings } from "@/constants";
+import { modal_atoms } from "@/atoms";
+import { useSetRecoilState } from "recoil";
 
 const Organization = () => {
   /**
    * Component States
    */
-  {
-    /*title, description, end_date, target_donation_amount, donated_amount, campaign */
-  }
+  const { show_create_or_edit_fundraising_modal_state } = modal_atoms;
+  const setShowCreateOrEditFundraisingModal = useSetRecoilState(
+    show_create_or_edit_fundraising_modal_state
+  );
   const columns = useMemo(
     () => [
       {
@@ -84,7 +87,7 @@ const Organization = () => {
       <div className="flex  justify-end">
         <Button
           title="CREATE A FUNDRAISING"
-          purpose={() => ""}
+          purpose={() => setShowCreateOrEditFundraisingModal(true)}
           type="medium"
           intent="primary_yellow"
           full_width={false}

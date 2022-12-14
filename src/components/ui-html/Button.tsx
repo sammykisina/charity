@@ -7,7 +7,7 @@ const button_styles = cva(
     variants: {
       intent: {
         primary: "bg-dark text-white",
-        primary_yellow: "bg-yellow text-dark",
+        primary_yellow: "bg-yellow text-dark hover:rounded-[1rem]",
         secondary: "bg-gray",
         danger: "bg-red-500 text-white",
         link: "text-dark font-semibold",
@@ -48,6 +48,7 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       onClick={purpose}
+      type="submit"
       className={button_styles({ intent, full_width, type })}
       {...props}
     >
