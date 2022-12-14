@@ -77,7 +77,7 @@ const Sidebar = () => {
           }}
           type="large"
           intent="secondary"
-          full_width
+          full_width={true}
         />
       )}
     </aside>

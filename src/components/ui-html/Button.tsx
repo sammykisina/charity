@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type { ReactNode, FC } from "react";
 
 const button_styles = cva(
-  "flex items-center justify-center px-4 py-2 rounded-full  focus:outline-none w-fit whitespace-nowrap",
+  "flex items-center justify-center px-4 py-2 rounded-full  focus:outline-none whitespace-nowrap",
   {
     variants: {
       intent: {
@@ -18,6 +18,7 @@ const button_styles = cva(
       },
       full_width: {
         true: "w-full",
+        false: "w-fit",
       },
     },
     defaultVariants: {
