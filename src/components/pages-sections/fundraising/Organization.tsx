@@ -92,7 +92,7 @@ const Organization = () => {
       </div>
 
       {/* Fundraising Table */}
-      <section className=" h-[38rem] w-full rounded-t-[2rem] rounded-b-[1rem]  bg-white py-6 px-4 xs:h-[36rem]">
+      <section className=" h-[40rem] w-full rounded-t-[2rem] rounded-b-[1rem]  bg-white py-6 px-4 xs:h-[36rem]">
         <Table
           data={getFundraisings()}
           columns={columns}
