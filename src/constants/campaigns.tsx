@@ -15,7 +15,7 @@ const Campaigns: Campaign[] = [
   {
     id: "humanity",
     image: humanityImage,
-    title: "Humanity",
+    title: "humanity",
     description:
       "Lorem ipsum dolor sit amet. Non tempora consequatur ab fugiat illum ut ratione amet in libero ",
     icon: <HiEmojiHappy />,
@@ -23,7 +23,7 @@ const Campaigns: Campaign[] = [
   {
     id: "education",
     image: educationImage,
-    title: "Education",
+    title: "education",
     description:
       "Eum libero nisi non libero mollitia sed excepturi architecto aut rerum nesciunt et adipisci q",
     icon: <BsVectorPen className="rotate-[90deg]" />,
@@ -31,7 +31,7 @@ const Campaigns: Campaign[] = [
   {
     id: "medical",
     image: medicalImage,
-    title: "Medical",
+    title: "medical",
     description:
       "maxime distinctio et suscipit atque qui aliquid animi quo minima consequatur.",
     icon: <TbActivityHeartbeat />,
@@ -39,7 +39,7 @@ const Campaigns: Campaign[] = [
   {
     id: "natural_disaster",
     image: naturalDisasterImage,
-    title: "Natural Disaster",
+    title: "natural disaster",
     description:
       "t nihil earum qui distinctio suscipit et sint voluptate qui autem voluptatem eum",
     icon: <FiCloudRain />,
@@ -47,7 +47,7 @@ const Campaigns: Campaign[] = [
   {
     id: "environment",
     image: environmentImage,
-    title: "Environment",
+    title: "environment",
     description:
       "Et magnam quidem qui fugit magnam eos minima odio eum veniam labore eum ",
     icon: <FiFeather />,
