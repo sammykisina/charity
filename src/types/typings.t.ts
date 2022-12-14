@@ -18,11 +18,11 @@ interface Info {
 }
 
 export type CampaignTitle =
-  | "Humanity"
-  | "Education"
-  | "Medical"
-  | "Natural Disaster"
-  | "Environment";
+  | "humanity"
+  | "education"
+  | "medical"
+  | "natural disaster"
+  | "environment";
 
 export interface Campaign extends Info {
   title: CampaignTitle;
@@ -35,6 +35,7 @@ export type Fundraising = {
   target_donation_amount: number;
   donated_amount: number;
   campaign?: string;
+  end_date: Date;
 };
 
 export type Role = "DONOR" | "ORGANIZATION";

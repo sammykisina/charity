@@ -156,7 +156,7 @@ const Select: FC<SelectProps> = ({
             }}
             key={option_index}
             className={`w-fit rounded-2xl px-2 py-1 font-semibold capitalize duration-300 hover:bg-yellow hover:font-normal hover:text-white ${getActiveOptionClass(
-              option
+              option || ""
             )}`}
           >
             {typeof option === "object" ? option.name : option}

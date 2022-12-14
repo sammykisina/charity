@@ -72,7 +72,6 @@ const Sidebar = () => {
           icon={<TbLogout />}
           title="Log Out"
           purpose={() => {
-            // router.re("/");
             signOut();
           }}
           type="large"

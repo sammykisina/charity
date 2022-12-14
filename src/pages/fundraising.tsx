@@ -1,13 +1,13 @@
 import {
-  DonorDashboard,
-  OrganizationDashboard,
+  DonorFundraising,
+  OrganizationFundraising,
   SpinnerLoader,
 } from "@/components";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React from "react";
 
-const Dashboard = () => {
+const Fundraising = () => {
   /**
    * Pages States
    */
@@ -29,10 +29,10 @@ const Dashboard = () => {
         </div>
       ) : (
         <section className="h-fit">
-          {session.user?.role === "ORGANIZATION" ? (
-            <OrganizationDashboard />
+          {session?.user?.role === "ORGANIZATION" ? (
+            <OrganizationFundraising />
           ) : (
-            <DonorDashboard />
+            <DonorFundraising />
           )}
         </section>
       )}
@@ -40,4 +40,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Fundraising;

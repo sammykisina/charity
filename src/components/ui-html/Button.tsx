@@ -7,6 +7,7 @@ const button_styles = cva(
     variants: {
       intent: {
         primary: "bg-dark text-white",
+        primary_yellow: "bg-yellow text-dark",
         secondary: "bg-gray",
         danger: "bg-red-500 text-white",
         link: "text-dark font-semibold",

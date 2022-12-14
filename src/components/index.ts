@@ -52,8 +52,14 @@ export { default as Messages } from "./ui-html/dropdown/dropdown-components/Mess
  */
 export { default as OrganizationDashboard } from "./pages-sections/dashboard/Organization";
 export { default as DonorDashboard } from "./pages-sections/dashboard/Donor";
+export { default as OrganizationFundraising } from "./pages-sections/fundraising/Organization";
+export { default as DonorFundraising } from "./pages-sections/fundraising/Donor";
 
 /**
  * Components Used To Format Table Cells Or Used In The Table
  */
 export { default as DateCell } from "./ui-html/table/DateCell";
+export { default as LongText } from "./ui-html/table/LongText";
+export { default as CampaignPill } from "./ui-html/table/CampaignPill";
+export { default as CampaignFilter } from "./ui-html/table/filters/CampaignFilter";
+export { default as Filter } from "./ui-html/table/filters/Filter";

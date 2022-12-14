@@ -47,7 +47,9 @@ const Table = ({
   return (
     <section className="pb-2">
       {show_filters && (
-        <section className={`flex flex-col justify-start gap-3  px-2`}>
+        <section
+          className={` flex flex-col items-start justify-start  gap-3 px-2 xs:flex-row xs:items-center  sm:flex-col sm:items-start md:flex-row md:items-center `}
+        >
           {/* the global search section */}
           <GlobalFilter
             pre_global_filtered_rows={preGlobalFilteredRows}
@@ -57,7 +59,7 @@ const Table = ({
 
           {/* the filter by role section */}
           <div
-            className={`flex w-fit  flex-col items-center gap-1 duration-300 lg:flex-row`}
+            className={`flex w-fit flex-col items-center gap-1 duration-300 lg:flex-row`}
           >
             {headerGroups.map((headerGroup) =>
               headerGroup.headers.map((column) =>

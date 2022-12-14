@@ -22,10 +22,10 @@ const GlobalFilter: FC<GlobalFilterProps> = ({
 
   return (
     <label className="flex items-baseline gap-x-2">
-      <div className="flex w-[200px] items-center gap-x-2 rounded-xl border border-indigo-500 px-3">
+      <div className="flex w-[200px] items-center  rounded-xl bg-gray/30 px-3">
         <Icon
           icon={<RiSearch2Line className="h-5 w-5" />}
-          icon_wrapper_styles=" text-gray-500"
+          icon_wrapper_styles=" text-dark"
         />
         <input
           type="text"
@@ -35,7 +35,7 @@ const GlobalFilter: FC<GlobalFilterProps> = ({
             onChange(e.target.value);
           }}
           placeholder={`${count} records`}
-          className="text-gra-900 w-full bg-transparent  px-2 py-2 outline-none"
+          className="text-gra-900 w-full bg-transparent px-1 py-2 outline-none"
         />
       </div>
     </label>

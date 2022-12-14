@@ -39,7 +39,7 @@ const SignIn = ({
                     title="CREATE ACCOUNT WITH GOOGLE"
                     icon={<BsGoogle className="h-[1.5rem] w-[1.5rem]" />}
                     icon_wrapper_styles="bg-white text-dark p-2 rounded-full"
-                    intent="primary"
+                    intent="primary_yellow"
                     type="large"
                     full_width
                     purpose={() => signIn(provider.id)}
