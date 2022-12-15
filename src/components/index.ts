@@ -17,6 +17,7 @@ export { default as SectionTitle } from "./ui-reusable/SectionTitle";
 export { default as OrgAnalysisCard } from "./ui-reusable/OrgAnalysisCard";
 export { default as OrgDashboardFundraisingCard } from "./ui-reusable/OrgDashboardFundraisingCard";
 export { default as Error } from "./ui-reusable/Error";
+export { default as Notify } from "./ui-reusable/Notify";
 
 /**
  * UI HTML

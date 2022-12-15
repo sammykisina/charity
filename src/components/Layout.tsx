@@ -10,6 +10,9 @@ import { useRecoilValue } from "recoil";
 import { showSidebarState } from "src/atoms/AppAtom";
 import { useSession } from "next-auth/react";
 import { modal_atoms } from "@/atoms";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { Toaster } from "react-hot-toast";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   /**
@@ -31,6 +34,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
               show_sidebar ? "left-0" : "-left-[100%]"
             }`}
           >
+            {/* The Toaster */}
+            <Toaster />
             <Sidebar />
           </div>
           <TopNavbar />

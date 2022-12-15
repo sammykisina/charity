@@ -25,7 +25,7 @@ const ModalHeader: FC<ModalHeaderProps> = ({
         title_styles={title_styles ? title_styles : "text-gray-900 uppercase"}
       />
 
-      <div className="h-[0.3rem] w-full rounded-full bg-gray" />
+      <div className="h-[0.3rem] w-full rounded-full bg-yellow/20" />
     </section>
   );
 };

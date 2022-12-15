@@ -56,3 +56,15 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Fundraising {
+  id                        String     @id @default(cuid())
+  title                     String     @db.Text
+  description               String     @db.Text
+  target_donation_amount    Int
+  donated_amount            Int       @default(0) 
+  campaign                  String
+  createdAt                 DateTime  @default(now())   
+  start_date                DateTime
+  end_date                  DateTime
+}

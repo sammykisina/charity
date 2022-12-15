@@ -33,6 +33,7 @@ interface ButtonProps extends VariantProps<typeof button_styles> {
   icon?: ReactNode;
   icon_wrapper_styles?: string;
   purpose?: () => void;
+  disabled?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -43,14 +44,14 @@ const Button: FC<ButtonProps> = ({
   title,
   purpose,
   icon_wrapper_styles,
-  ...props
+  disabled,
 }) => {
   return (
     <button
       onClick={purpose}
       type="submit"
       className={button_styles({ intent, full_width, type })}
-      {...props}
+      disabled={disabled}
     >
       {icon && <span className={`${icon_wrapper_styles}`}>{icon}</span>}
       {title}

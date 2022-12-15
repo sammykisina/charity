@@ -25,7 +25,9 @@
       "@/assets": ["src/assets"],
       "@/routes": ["src/routes"],
       "@/hooks": ["src/hooks"],
-      "@/atoms": ["src/atoms"]
+      "@/atoms": ["src/atoms"],
+      "@/schemas": ["src/schemas"],
+      "@/utils": ["src/utils"]
     }
   },
   "include": [
