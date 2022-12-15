@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import {
   Button,
   CampaignFilter,
@@ -12,33 +12,6 @@ import { modal_atoms } from "@/atoms";
 import { useSetRecoilState } from "recoil";
 import { trpc } from "src/utils/trpc";
 import { useQueryClient } from "@tanstack/react-query";
-
-const useScrollPosition = () => {
-  const [scroll_position, setScrollPosition] = useState(0);
-
-  const handleScroll = () => {
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-
-    const window_scroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-
-    const scrolled = (window_scroll / height) * 100;
-
-    setScrollPosition(scrolled);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  return scroll_position;
-};
 
 const Organization = () => {
   /**
@@ -55,8 +28,6 @@ const Organization = () => {
       { getNextPageParam: (lastPage) => lastPage.next_cursor }
     );
   const fundraisings = data?.pages.flatMap((page) => page.fundraisings) ?? [];
-
-  console.log("fundraisings", fundraisings);
 
   const columns = useMemo(
     () => [
@@ -97,7 +68,6 @@ const Organization = () => {
     []
   );
 
-  const scroll_position = useScrollPosition();
   const client = useQueryClient();
 
   // useEffect(() => {
