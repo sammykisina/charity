@@ -1,15 +1,44 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Button,
   CampaignFilter,
   CampaignPill,
   DateCell,
   LongText,
+  SpinnerLoader,
   Table,
 } from "@/components";
-import { fundraisings } from "@/constants";
 import { modal_atoms } from "@/atoms";
 import { useSetRecoilState } from "recoil";
+import { trpc } from "src/utils/trpc";
+import { useQueryClient } from "@tanstack/react-query";
+
+const useScrollPosition = () => {
+  const [scroll_position, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const window_scroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+
+    const scrolled = (window_scroll / height) * 100;
+
+    setScrollPosition(scrolled);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return scroll_position;
+};
 
 const Organization = () => {
   /**
@@ -19,6 +48,16 @@ const Organization = () => {
   const setShowCreateOrEditFundraisingModal = useSetRecoilState(
     show_create_or_edit_fundraising_modal_state
   );
+  const LIMIT = 10;
+  const { data, hasNextPage, fetchNextPage, isFetching } =
+    trpc.fundraising.get.useInfiniteQuery(
+      { limit: LIMIT },
+      { getNextPageParam: (lastPage) => lastPage.next_cursor }
+    );
+  const fundraisings = data?.pages.flatMap((page) => page.fundraisings) ?? [];
+
+  console.log("fundraisings", fundraisings);
+
   const columns = useMemo(
     () => [
       {
@@ -58,6 +97,15 @@ const Organization = () => {
     []
   );
 
+  const scroll_position = useScrollPosition();
+  const client = useQueryClient();
+
+  // useEffect(() => {
+  //   if (scroll_position > 90 && hasNextPage && !isFetching) {
+  //     fetchNextPage();
+  //   }
+  // }, [scroll_position, hasNextPage, isFetching, fetchNextPage]);
+
   /**
    * Component Functions
    */
@@ -95,13 +143,26 @@ const Organization = () => {
       </div>
 
       {/* Fundraising Table */}
-      <section className=" h-[41.5rem] w-full rounded-t-[2rem] rounded-b-[1rem]  bg-white py-6 px-4 xs:h-[36rem]">
+      <section className="relative h-[41.5rem] w-full rounded-t-[2rem] rounded-b-[1rem]  bg-white py-6 px-4 xs:h-[36rem]">
         <Table
           data={getFundraisings()}
           columns={columns}
           show_filters={true}
           table_height="h-[32rem] xs:h-[29.5rem] sm:h-[29rem] md:h-[29.5rem]"
         />
+        <div className=" absolute top-[24px]  right-[16px]">
+          {hasNextPage && (
+            <Button
+              title={
+                isFetching ? <SpinnerLoader color="fill-white" /> : "Load More"
+              }
+              intent="primary"
+              purpose={() => {
+                fetchNextPage();
+              }}
+            />
+          )}
+        </div>
       </section>
     </section>
   );

@@ -74,11 +74,11 @@ const Table = ({
 
       {/* tabel */}
       <section
-        className={`mt-4 flex w-auto flex-col overflow-y-hidden scrollbar-hide  ${
+        className={`mt-4 flex w-auto flex-col overflow-y-scroll scrollbar-hide  ${
           show_filters ? table_height : "h-fit"
         }`}
       >
-        <div className="w-full overflow-auto  rounded-[2rem] border border-gray/50 scrollbar-hide">
+        <div className="w-full overflow-y-scroll  rounded-[2rem] border border-gray/50 scrollbar-hide ">
           <table
             {...getTableProps()}
             className="mx-auto w-full min-w-full  max-w-4xl divide-y divide-gray overflow-hidden whitespace-nowrap   bg-white"
