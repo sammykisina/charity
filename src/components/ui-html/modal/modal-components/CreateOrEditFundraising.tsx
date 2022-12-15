@@ -31,6 +31,7 @@ const CreateOrEditFundraising = () => {
   const setShowCreateOrEditFundraisingModal = useSetRecoilState(
     show_create_or_edit_fundraising_modal_state
   );
+  const utils = trpc.useContext();
   const { fundraising_schema } = organization_schemas;
   const [date_range, setDateRange] = useState<any[]>([
     {
@@ -57,6 +58,7 @@ const CreateOrEditFundraising = () => {
   const { mutateAsync, isLoading } = trpc.fundraising.create.useMutation({
     onSuccess: () => {
       setIsEditingFundraising(false);
+      utils.fundraising.get.invalidate();
       Notifications.successNotification("Fundraising Created Successfully.");
       setShowCreateOrEditFundraisingModal(false);
     },

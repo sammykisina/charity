@@ -21,7 +21,7 @@ const Organization = () => {
   const setShowCreateOrEditFundraisingModal = useSetRecoilState(
     show_create_or_edit_fundraising_modal_state
   );
-  const LIMIT = 3;
+  const LIMIT = 10;
   const { data, hasNextPage, fetchNextPage, isFetching } =
     trpc.fundraising.get.useInfiniteQuery(
       { limit: LIMIT },
