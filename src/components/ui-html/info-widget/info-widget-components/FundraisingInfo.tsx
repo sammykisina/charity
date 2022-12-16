@@ -50,7 +50,7 @@ const FundraisingInfo = () => {
       </section>
 
       {/* Body */}
-      <section className="mx-4 mt-2 flex flex-col gap-3">
+      <section className="mx-4 mt-2 flex flex-col  gap-2 xs:gap-4">
         {/* Image */}
         <div className="relative">
           <div className="h-[15rem] w-full overflow-hidden ">
@@ -89,10 +89,10 @@ const FundraisingInfo = () => {
           </div>
 
           {/* Donations */}
-          <div className="mt-6 flex justify-between rounded-[2rem]  bg-dark px-4 py-6 text-white">
-            <div className=" flex flex-col gap-4  ">
+          <div className="mt-6 flex justify-between gap-4 rounded-[2rem]  bg-dark px-4 py-6 text-white">
+            <div className=" flex flex-col gap-4 ">
               <div className="flex flex-col">
-                <span className=" font-extralight tracking-wide">
+                <span className=" whitespace-nowrap font-extralight tracking-wide">
                   Target Amount (Ksh)
                 </span>
 
@@ -104,7 +104,7 @@ const FundraisingInfo = () => {
               </div>
 
               <div className="flex flex-col">
-                <span className=" font-extralight tracking-wide">
+                <span className=" whitespace-nowrap font-extralight tracking-wide">
                   Donated Amount (Ksh)
                 </span>
 
@@ -117,11 +117,15 @@ const FundraisingInfo = () => {
             </div>
 
             <div
-              className={`flex   items-center justify-center  ${
-                percentage > 500 ? "w-1/2 text-[3rem]" : "w-2/5 text-[4rem]"
+              className={`flex items-center justify-center rounded-md border border-gray ${
+                percentage > 500
+                  ? "w-1/2 text-[1.5rem] xs:text-[3rem]"
+                  : "w-2/5 text-[2rem] xs:text-[4rem]"
               }`}
             >
-              {percentage} %
+              {percentage > 500
+                ? percentage.toString().substring(0, 3) + "% +"
+                : percentage + "%"}
             </div>
           </div>
         </div>
