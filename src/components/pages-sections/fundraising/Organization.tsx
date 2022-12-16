@@ -113,7 +113,7 @@ const Organization = () => {
           campaign: fundraising.campaign,
           action: (
             <Button
-              title="View Info"
+              title="view"
               type="small"
               intent="primary_yellow"
               purpose={() => {
