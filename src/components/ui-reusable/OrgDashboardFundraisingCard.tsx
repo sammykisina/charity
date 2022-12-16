@@ -1,11 +1,7 @@
 import Image from "next/image";
 import type { FC } from "react";
 import type { Fundraising } from "src/types/typings.t";
-import {
-  calculatePercentage,
-  generateNumberWithCommas,
-  getFundraisingCampaignInfo,
-} from "src/utils/app";
+import { app_utils } from "@/utils";
 import { ProgressBar, Icon } from "@/components";
 
 type OrgDashboardFundraisingCardProps = {
@@ -18,6 +14,11 @@ const OrgDashboardFundraisingCard: FC<OrgDashboardFundraisingCardProps> = ({
   /**
    * Component States
    */
+  const {
+    calculatePercentage,
+    generateNumberWithCommas,
+    getFundraisingCampaignInfo,
+  } = app_utils;
   const campaign = getFundraisingCampaignInfo(fundraising.campaign || "");
   const percentage = calculatePercentage(
     fundraising.target_donation_amount,

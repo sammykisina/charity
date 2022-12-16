@@ -2,14 +2,16 @@ import type { ReactNode } from "react";
 import {
   CreateOrEditFundraising,
   Footer,
+  FundraisingInfo,
+  InfoWidget,
   Modal,
   Sidebar,
   TopNavbar,
 } from "@/components";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { showSidebarState } from "src/atoms/AppAtom";
 import { useSession } from "next-auth/react";
-import { modal_atoms } from "@/atoms";
+import { modal_atoms, app_atoms, info_widget_atoms } from "@/atoms";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Toaster } from "react-hot-toast";
@@ -23,6 +25,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const show_create_or_edit_fundraising_modal = useRecoilValue(
     show_create_or_edit_fundraising_modal_state
   );
+  const { show_info_widget_state } = info_widget_atoms;
+  const show_info_widget = useRecoilValue(show_info_widget_state);
 
   return (
     <section className="mx-auto max-w-[1200px] sm:px-[20px]">
@@ -50,6 +54,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
         modal_state={show_create_or_edit_fundraising_modal}
         modal_styles="w-[90vw] h-[24rem] sm:h-[21.5rem] duration-300"
         component={<CreateOrEditFundraising />}
+      />
+
+      {/*  */}
+      <InfoWidget
+        widget_state={show_info_widget}
+        component={<FundraisingInfo />}
+        widget_styles="w-[90vw] h-screen"
       />
     </section>
   );

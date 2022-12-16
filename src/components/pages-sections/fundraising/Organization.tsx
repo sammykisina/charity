@@ -4,12 +4,19 @@ import {
   CampaignFilter,
   CampaignPill,
   DateCell,
+  FundraisingInfo,
+  InfoWidget,
   LongText,
   SpinnerLoader,
   Table,
 } from "@/components";
-import { modal_atoms } from "@/atoms";
-import { useSetRecoilState } from "recoil";
+import {
+  app_atoms,
+  fundraising_atoms,
+  info_widget_atoms,
+  modal_atoms,
+} from "@/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { trpc } from "src/utils/trpc";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -28,6 +35,10 @@ const Organization = () => {
       { getNextPageParam: (lastPage) => lastPage.next_cursor }
     );
   const fundraisings = data?.pages.flatMap((page) => page.fundraisings) ?? [];
+  const { show_info_widget_state } = info_widget_atoms;
+  const { global_fundraising_state } = fundraising_atoms;
+  const setShowInfoWidget = useSetRecoilState(show_info_widget_state);
+  const setGlobalFundraising = useSetRecoilState(global_fundraising_state);
 
   const columns = useMemo(
     () => [
@@ -62,6 +73,10 @@ const Organization = () => {
             accessor: "end_date",
             Cell: DateCell,
           },
+          {
+            Header: "Action",
+            accessor: "action",
+          },
         ],
       },
     ],
@@ -92,6 +107,17 @@ const Organization = () => {
           target_donation_amount: fundraising.target_donation_amount,
           donated_amount: fundraising.donated_amount,
           campaign: fundraising.campaign,
+          action: (
+            <Button
+              title="View Info"
+              type="small"
+              intent="primary_yellow"
+              purpose={() => {
+                setGlobalFundraising(fundraising);
+                setShowInfoWidget(true);
+              }}
+            />
+          ),
         },
       ];
     });
@@ -118,7 +144,7 @@ const Organization = () => {
           data={getFundraisings()}
           columns={columns}
           show_filters={true}
-          table_height="h-[32rem] xs:h-[29.5rem] sm:h-[29rem] md:h-[29.5rem]"
+          table_height="h-[32rem] xs:h-[27.5rem] lg:h-[29.5rem]"
         />
         <div className=" absolute top-[24px]  right-[16px]">
           {hasNextPage && (

@@ -1,11 +1,7 @@
 import Image from "next/image";
 import type { FC } from "react";
 import type { Fundraising as FundraisingType } from "src/types/typings.t";
-import {
-  calculatePercentage,
-  generateNumberWithCommas,
-  getFundraisingCampaignInfo,
-} from "src/utils/app";
+import { app_utils } from "@/utils";
 import { ProgressBar } from "@/components";
 
 interface FundraisingProps {
@@ -24,6 +20,12 @@ const Fundraising: FC<FundraisingProps> = ({
   /**
    * Component states
    */
+  const {
+    calculatePercentage,
+    generateNumberWithCommas,
+    getFundraisingCampaignInfo,
+  } = app_utils;
+  
   const description_length = description.length;
   const percentage = calculatePercentage(
     target_donation_amount,

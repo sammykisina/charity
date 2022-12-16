@@ -6,7 +6,7 @@ export const classNames = (...classes: any): string => {
   return classes.filter(Boolean).join(" ");
 };
 
-export const calculatePercentage = (
+const calculatePercentage = (
   target_donation_amount: number,
   donated_amount: number
 ): number => {
@@ -18,9 +18,7 @@ export const generateNumberWithCommas = (number: number) => {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-export const getFundraisingCampaignInfo = (
-  campaign_id: string
-): Campaign | null => {
+const getFundraisingCampaignInfo = (campaign_id: string): Campaign | null => {
   let campaignInfo: Campaign | null = null;
 
   switch (campaign_id) {
@@ -45,3 +43,11 @@ export const getFundraisingCampaignInfo = (
 
   return campaignInfo;
 };
+
+const app_utils = {
+  calculatePercentage,
+  generateNumberWithCommas,
+  getFundraisingCampaignInfo,
+};
+
+export default app_utils;

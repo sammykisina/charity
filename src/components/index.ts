@@ -37,6 +37,9 @@ export { default as Modal } from "./ui-html/modal/Modal";
 export { default as ModalClose } from "./ui-html/modal/ModalClose";
 export { default as ModalHeader } from "./ui-html/modal/ModalHeader";
 export { default as Input } from "./ui-html/Input";
+export { default as InfoWidget } from "./ui-html/info-widget/InfoWidget";
+export { default as InfoWidgetHeader } from "./ui-html/info-widget/InfoWidgetHeader";
+export { default as InfoWidgetClose } from "./ui-html/info-widget/InfoWidgetClose";
 
 /**
  * Home Page Sections
@@ -75,3 +78,8 @@ export { default as Filter } from "./ui-html/table/filters/Filter";
  * Components To Be Used In Modal
  */
 export { default as CreateOrEditFundraising } from "./ui-html/modal/modal-components/CreateOrEditFundraising";
+
+/**
+ * Component To Be Used In InfoWidget
+ */
+export { default as FundraisingInfo } from "./ui-html/info-widget/info-widget-components/FundraisingInfo";

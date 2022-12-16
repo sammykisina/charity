@@ -48,7 +48,7 @@ const Table = ({
     <section className="pb-2">
       {show_filters && (
         <section
-          className={` flex flex-col items-start justify-start  gap-3 px-2 xs:flex-row xs:items-center  sm:flex-col sm:items-start md:flex-row md:items-center `}
+          className={` flex flex-col items-start justify-start  gap-3 px-2 xs:flex-col  sm:flex-col sm:items-start md:flex-col lg:flex-row lg:items-center `}
         >
           {/* the global search section */}
           <GlobalFilter

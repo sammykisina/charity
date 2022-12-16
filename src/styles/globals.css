@@ -106,6 +106,18 @@
     @apply relative h-fit max-w-[650px] overflow-clip rounded-3xl bg-white;
   }
 
+  .info-wrapper {
+    @apply invisible fixed top-0 -right-full  z-50 grid h-full  w-full  transform place-items-end bg-[#00000080] py-4 transition-all duration-300 ease-in;
+  }
+
+  .info-wrapper.show {
+    @apply visible right-0 z-50;
+  }
+
+  .info {
+    @apply relative h-fit max-w-[650px] overflow-clip rounded-tl-[2rem] bg-white;
+  }
+
   .input {
     @apply h-10 w-full border-b-2 border-gray placeholder-transparent scrollbar-hide focus:border-yellow focus:outline-none;
   }
