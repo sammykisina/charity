@@ -31,7 +31,7 @@ const getFundraisingCampaignInfo = (campaign_id: string): Campaign | null => {
     case "medical":
       campaignInfo = campaigns[2] || null;
       break;
-    case "natural_disaster":
+    case "natural disaster":
       campaignInfo = campaigns[3] || null;
       break;
     case "environment":
