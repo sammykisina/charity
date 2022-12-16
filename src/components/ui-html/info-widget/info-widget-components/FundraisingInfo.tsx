@@ -131,7 +131,7 @@ const FundraisingInfo = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-end gap-2">
+        <div className="mt-4 flex justify-end gap-2 xs:mt-0">
           <Button
             title="Edit"
             type="medium"
