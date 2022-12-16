@@ -5,15 +5,18 @@ import { Button, CampaignPill, InfoWidgetHeader } from "@/components";
 import { app_utils } from "@/utils";
 import Image from "next/image";
 import { format } from "date-fns";
-import { useClickOutside } from "@/hooks";
 
 const FundraisingInfo = () => {
   /**
    * Component States
    */
-  const { global_fundraising_state } = fundraising_atoms;
+  const { global_fundraising_state, is_editing_fundraising_state } =
+    fundraising_atoms;
   const { show_info_widget_state } = info_widget_atoms;
-  const { show_delete_fundraising_modal_state } = modal_atoms;
+  const {
+    show_delete_fundraising_modal_state,
+    show_create_or_edit_fundraising_modal_state,
+  } = modal_atoms;
   const [global_fundraising, setGlobalFundraising] = useRecoilState(
     global_fundraising_state
   );
@@ -21,6 +24,13 @@ const FundraisingInfo = () => {
   const setShowDeleteFundraisingModal = useSetRecoilState(
     show_delete_fundraising_modal_state
   );
+  const setShowCreateOrEditFundraisingModal = useSetRecoilState(
+    show_create_or_edit_fundraising_modal_state
+  );
+  const setIsEditingFundraising = useSetRecoilState(
+    is_editing_fundraising_state
+  );
+
   const {
     getFundraisingCampaignInfo,
     generateNumberWithCommas,
@@ -141,6 +151,10 @@ const FundraisingInfo = () => {
             type="medium"
             intent="primary_yellow"
             full_width={true}
+            purpose={() => {
+              setIsEditingFundraising(true);
+              setShowCreateOrEditFundraisingModal(true);
+            }}
           />
 
           <Button

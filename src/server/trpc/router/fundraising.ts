@@ -1,6 +1,6 @@
 import { protectedProcedure, publicProcedure, router } from "../trpc";
 import { organization_schemas } from "@/schemas";
-import { number, object, string } from "zod";
+import { date, number, object, string } from "zod";
 
 const { fundraising_schema } = organization_schemas;
 
@@ -58,6 +58,42 @@ export const fundraisingRoutes = router({
         fundraisings,
         next_cursor,
       };
+    }),
+
+  update: protectedProcedure
+    .input(
+      object({
+        id: string().optional(),
+        fundraising_schema,
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const { prisma } = ctx;
+      const {
+        id,
+        fundraising_schema: {
+          title,
+          description,
+          target_donation_amount,
+          start_date,
+          end_date,
+          campaign,
+        },
+      } = input;
+
+      return prisma.fundraising.update({
+        data: {
+          title,
+          description,
+          target_donation_amount: parseInt(target_donation_amount),
+          campaign: campaign || "",
+          start_date: start_date || "",
+          end_date: end_date || "",
+        },
+        where: {
+          id: id,
+        },
+      });
     }),
 
   delete: protectedProcedure

@@ -1,5 +1,5 @@
-import { fundraising_atoms, modal_atoms } from "@/atoms";
-import React, { useState } from "react";
+import { fundraising_atoms, info_widget_atoms, modal_atoms } from "@/atoms";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   ModalHeader,
@@ -16,20 +16,32 @@ import { trpc } from "src/utils/trpc";
 import { DateRange } from "react-date-range";
 import { addDays, format } from "date-fns";
 import { Notifications } from "@/utils";
+import { Fundraising } from "src/types/typings.t";
 
 const CreateOrEditFundraising = () => {
   /**
    * Component States
    */
-  const { is_editing_fundraising_state } = fundraising_atoms;
+  type FundraisingSchema = z.infer<typeof fundraising_schema>;
+  const { is_editing_fundraising_state, global_fundraising_state } =
+    fundraising_atoms;
   const { show_create_or_edit_fundraising_modal_state } = modal_atoms;
+  const { show_info_widget_state } = info_widget_atoms;
+  const setShowInfoWidget = useSetRecoilState(show_info_widget_state);
+  const [global_fundraising, setGLobalFundraising] = useRecoilState(
+    global_fundraising_state
+  );
   const [is_editing_fundraising, setIsEditingFundraising] = useRecoilState(
     is_editing_fundraising_state
   );
   const setShowCreateOrEditFundraisingModal = useSetRecoilState(
     show_create_or_edit_fundraising_modal_state
   );
-  const utils = trpc.useContext();
+
+  const [selected_campaign, setSelectedCampaign] = useState({
+    name: "education",
+    value: "education",
+  });
   const { fundraising_schema } = organization_schemas;
   const [date_range, setDateRange] = useState<any[]>([
     {
@@ -38,20 +50,18 @@ const CreateOrEditFundraising = () => {
       key: "selection",
     },
   ]);
+  // let updated_data: Fundraising | null = null;
 
-  type FundraisingSchema = z.infer<typeof fundraising_schema>;
-
+  const utils = trpc.useContext();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FundraisingSchema>({
     resolver: zodResolver(fundraising_schema),
   });
-  const [selected_campaign, setSelectedCampaign] = useState({
-    name: "education",
-    value: "education",
-  });
+
   const { mutateAsync, isLoading } = trpc.fundraising.create.useMutation({
     onSuccess: () => {
       setIsEditingFundraising(false);
@@ -67,6 +77,23 @@ const CreateOrEditFundraising = () => {
     },
   });
 
+  const { mutateAsync: updateMutateAsync, isLoading: isUpdating } =
+    trpc.fundraising.update.useMutation({
+      onSuccess: () => {
+        setIsEditingFundraising(false);
+        utils.fundraising.get.invalidate();
+        Notifications.successNotification("Fundraising Updated Successfully.");
+        Notifications.successNotification("Fundraising Deleted Successfully.");
+        setGLobalFundraising(null);
+        setShowInfoWidget(false);
+        setShowCreateOrEditFundraisingModal(false);
+      },
+
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+
   const options: { name: string; value: string }[] = [
     { name: "education", value: "education" },
     { name: "environment", value: "environment" },
@@ -74,6 +101,33 @@ const CreateOrEditFundraising = () => {
     { name: "medical", value: "medical" },
     { name: "natural disaster", value: "natural disaster" },
   ];
+
+  const update = (
+    title: string,
+    description: string,
+    target_donation_amount: string
+  ) => {
+    // updated_data = {
+    //   title,
+    //   description,
+    //   // target_donation_amount,
+    //   start_date: new Date(format(date_range[0].startDate, "MM/dd/yyyy")),
+    //   end_date: new Date(format(date_range[0].endDate, "MM/dd/yyyy")),
+    //   campaign: selected_campaign.name,
+    // };
+
+    updateMutateAsync({
+      id: global_fundraising?.id,
+      fundraising_schema: {
+        title,
+        description,
+        target_donation_amount,
+        start_date: new Date(format(date_range[0].startDate, "MM/dd/yyyy")),
+        end_date: new Date(format(date_range[0].endDate, "MM/dd/yyyy")),
+        campaign: selected_campaign.name,
+      },
+    });
+  };
 
   /**
    * Component Functions
@@ -83,15 +137,43 @@ const CreateOrEditFundraising = () => {
     description,
     target_donation_amount,
   }) => {
-    mutateAsync({
-      title,
-      description,
-      target_donation_amount,
-      start_date: new Date(format(date_range[0].startDate, "MM/dd/yyyy")),
-      end_date: new Date(format(date_range[0].endDate, "MM/dd/yyyy")),
-      campaign: selected_campaign.name,
-    });
+    is_editing_fundraising
+      ? update(title, description, target_donation_amount)
+      : mutateAsync({
+          title,
+          description,
+          target_donation_amount,
+          start_date: new Date(format(date_range[0].startDate, "MM/dd/yyyy")),
+          end_date: new Date(format(date_range[0].endDate, "MM/dd/yyyy")),
+          campaign: selected_campaign.name,
+        });
   };
+
+  /**
+   * Set Up Prev Values When Editing The Fundraising
+   */
+  useEffect(() => {
+    if (global_fundraising && is_editing_fundraising) {
+      reset({
+        title: global_fundraising?.title,
+        description: global_fundraising?.description,
+        target_donation_amount:
+          global_fundraising?.target_donation_amount.toString(),
+      });
+      setSelectedCampaign({
+        name: global_fundraising.campaign || "",
+        value: global_fundraising.campaign || "",
+      });
+
+      setDateRange([
+        {
+          startDate: global_fundraising.start_date,
+          endDate: global_fundraising.end_date,
+          key: "selection",
+        },
+      ]);
+    }
+  }, [is_editing_fundraising, global_fundraising, reset]);
 
   return (
     <section>
@@ -101,6 +183,7 @@ const CreateOrEditFundraising = () => {
           close={() => {
             setIsEditingFundraising(false);
             setShowCreateOrEditFundraisingModal(false);
+            !is_editing_fundraising && setGLobalFundraising(null);
           }}
           is_editing={is_editing_fundraising}
           edit_title="Editing Fundraising."
@@ -184,7 +267,15 @@ const CreateOrEditFundraising = () => {
 
         <div className="mb-1 flex justify-end">
           <Button
-            title={isLoading ? <SpinnerLoader color="fill-white" /> : "Create"}
+            title={
+              isLoading || isUpdating ? (
+                <SpinnerLoader color="fill-white" />
+              ) : is_editing_fundraising ? (
+                "Update"
+              ) : (
+                "Create"
+              )
+            }
             intent="primary_yellow"
             disabled={isLoading}
           />

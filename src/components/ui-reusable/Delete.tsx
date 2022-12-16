@@ -1,5 +1,4 @@
 import React, { type FC } from "react";
-import { FiTrash } from "react-icons/fi";
 import { Button, ModalClose, SpinnerLoader } from "@/components";
 
 type DeleteProps = {
