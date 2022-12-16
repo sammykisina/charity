@@ -5,11 +5,11 @@ const fundraising_schema = object({
     required_error: "Fundraising Title Is Required.",
   })
     .min(25, { message: "The Fundraising Title Is Too Short." })
-    .max(100, { message: "The Fundraising Title Is Too Long." }),
+    .max(40, { message: "The Fundraising Title Is Too Long." }),
   description: string({
     required_error: "Fundraising Description Is Required.",
   })
-    .min(30, { message: "The Fundraising Description Is Too Short." })
+    .min(100, { message: "The Fundraising Description Is Too Short." })
     .max(150, { message: "The Fundraising Description Is Too Long." }),
   target_donation_amount: string({
     required_error: "Fundraising Target Amount Is Required.",
