@@ -1,17 +1,16 @@
 import type { ReactNode } from "react";
 import {
   CreateOrEditFundraising,
-  Footer,
+  DeleteFundraising,
   FundraisingInfo,
   InfoWidget,
   Modal,
   Sidebar,
   TopNavbar,
 } from "@/components";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { showSidebarState } from "src/atoms/AppAtom";
-import { useSession } from "next-auth/react";
-import { modal_atoms, app_atoms, info_widget_atoms } from "@/atoms";
+import { modal_atoms, info_widget_atoms } from "@/atoms";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Toaster } from "react-hot-toast";
@@ -20,11 +19,20 @@ const Layout = ({ children }: { children: ReactNode }) => {
   /**
    * Component States
    */
-  const { show_create_or_edit_fundraising_modal_state } = modal_atoms;
+  // Modal States
+  const {
+    show_create_or_edit_fundraising_modal_state,
+    show_delete_fundraising_modal_state,
+  } = modal_atoms;
   const show_sidebar = useRecoilValue(showSidebarState);
   const show_create_or_edit_fundraising_modal = useRecoilValue(
     show_create_or_edit_fundraising_modal_state
   );
+  const show_delete_fundraising_modal = useRecoilValue(
+    show_delete_fundraising_modal_state
+  );
+
+  // Widget States
   const { show_info_widget_state } = info_widget_atoms;
   const show_info_widget = useRecoilValue(show_info_widget_state);
 
@@ -56,7 +64,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
         component={<CreateOrEditFundraising />}
       />
 
-      {/*  */}
+      <Modal
+        modal_state={show_delete_fundraising_modal}
+        modal_styles="w-[90vw] h-[14.2rem] duration-300"
+        component={<DeleteFundraising />}
+      />
+
+      {/* Info Widget */}
       <InfoWidget
         widget_state={show_info_widget}
         component={<FundraisingInfo />}

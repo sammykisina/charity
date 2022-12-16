@@ -26,7 +26,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className="relative z-50 flex h-screen flex-col justify-between bg-dark p-4 pt-[3.1rem] duration-300"
+      className="relative z-40 flex h-screen flex-col justify-between bg-dark p-4 pt-[3.1rem] duration-300"
       ref={sidebar_ref}
     >
       <Icon

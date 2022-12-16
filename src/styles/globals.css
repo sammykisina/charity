@@ -111,7 +111,7 @@
   }
 
   .info-wrapper.show {
-    @apply visible right-0 z-50;
+    @apply visible right-0 z-40;
   }
 
   .info {

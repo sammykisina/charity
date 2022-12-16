@@ -4,21 +4,14 @@ import {
   CampaignFilter,
   CampaignPill,
   DateCell,
-  FundraisingInfo,
-  InfoWidget,
   LongText,
   SpinnerLoader,
   Table,
 } from "@/components";
-import {
-  app_atoms,
-  fundraising_atoms,
-  info_widget_atoms,
-  modal_atoms,
-} from "@/atoms";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { fundraising_atoms, info_widget_atoms, modal_atoms } from "@/atoms";
+import { useSetRecoilState } from "recoil";
 import { trpc } from "src/utils/trpc";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
 import { app_utils } from "@/utils";
 
 const Organization = () => {
@@ -36,6 +29,7 @@ const Organization = () => {
       { getNextPageParam: (lastPage) => lastPage.next_cursor }
     );
   const fundraisings = data?.pages.flatMap((page) => page.fundraisings) ?? [];
+
   const { show_info_widget_state } = info_widget_atoms;
   const { global_fundraising_state } = fundraising_atoms;
   const setShowInfoWidget = useSetRecoilState(show_info_widget_state);
@@ -85,7 +79,7 @@ const Organization = () => {
     []
   );
 
-  const client = useQueryClient();
+  // const client = useQueryClient();
 
   // useEffect(() => {
   //   if (scroll_position > 90 && hasNextPage && !isFetching) {

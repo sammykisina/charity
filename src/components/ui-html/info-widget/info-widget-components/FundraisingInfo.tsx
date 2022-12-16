@@ -1,4 +1,4 @@
-import { fundraising_atoms, info_widget_atoms } from "@/atoms";
+import { fundraising_atoms, info_widget_atoms, modal_atoms } from "@/atoms";
 import React, { useRef } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { Button, CampaignPill, InfoWidgetHeader } from "@/components";
@@ -13,10 +13,14 @@ const FundraisingInfo = () => {
    */
   const { global_fundraising_state } = fundraising_atoms;
   const { show_info_widget_state } = info_widget_atoms;
+  const { show_delete_fundraising_modal_state } = modal_atoms;
   const [global_fundraising, setGlobalFundraising] = useRecoilState(
     global_fundraising_state
   );
   const setShowInfoWidget = useSetRecoilState(show_info_widget_state);
+  const setShowDeleteFundraisingModal = useSetRecoilState(
+    show_delete_fundraising_modal_state
+  );
   const {
     getFundraisingCampaignInfo,
     generateNumberWithCommas,
@@ -34,7 +38,7 @@ const FundraisingInfo = () => {
     global_fundraising?.target_donation_amount || 0,
     global_fundraising?.donated_amount || 0
   );
-  useClickOutside(fundraising_info_ref, () => setShowInfoWidget(false));
+  // useClickOutside(fundraising_info_ref, () => setShowInfoWidget(false));
 
   return (
     <section ref={fundraising_info_ref}>
@@ -144,6 +148,7 @@ const FundraisingInfo = () => {
             type="medium"
             intent="danger"
             full_width={false}
+            purpose={() => setShowDeleteFundraisingModal(true)}
           />
         </div>
       </section>

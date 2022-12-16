@@ -30,6 +30,7 @@ export interface Campaign extends Info {
 }
 
 export type Fundraising = {
+  id?: string;
   title: string;
   description: string;
   target_donation_amount: number;

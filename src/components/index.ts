@@ -18,6 +18,7 @@ export { default as OrgAnalysisCard } from "./ui-reusable/OrgAnalysisCard";
 export { default as OrgDashboardFundraisingCard } from "./ui-reusable/OrgDashboardFundraisingCard";
 export { default as Error } from "./ui-reusable/Error";
 export { default as Notify } from "./ui-reusable/Notify";
+export { default as Delete } from "./ui-reusable/Delete";
 
 /**
  * UI HTML
@@ -78,6 +79,7 @@ export { default as Filter } from "./ui-html/table/filters/Filter";
  * Components To Be Used In Modal
  */
 export { default as CreateOrEditFundraising } from "./ui-html/modal/modal-components/CreateOrEditFundraising";
+export { default as DeleteFundraising } from "./ui-html/modal/modal-components/DeleteFundraising";
 
 /**
  * Component To Be Used In InfoWidget

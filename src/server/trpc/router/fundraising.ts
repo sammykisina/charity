@@ -59,4 +59,20 @@ export const fundraisingRoutes = router({
         next_cursor,
       };
     }),
+
+  delete: protectedProcedure
+    .input(
+      object({
+        id: string().optional(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const { prisma } = ctx;
+      const { id } = input;
+      return prisma.fundraising.delete({
+        where: {
+          id: id,
+        },
+      });
+    }),
 });

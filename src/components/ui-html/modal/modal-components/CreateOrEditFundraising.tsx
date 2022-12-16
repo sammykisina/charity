@@ -7,15 +7,13 @@ import {
   Error,
   Select,
   SpinnerLoader,
-  Notify,
 } from "@/components";
-import type { CampaignTitle, Fundraising } from "src/types/typings.t";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { organization_schemas } from "@/schemas";
 import { trpc } from "src/utils/trpc";
-import { Calendar, DateRange, DateRangePicker } from "react-date-range";
+import { DateRange } from "react-date-range";
 import { addDays, format } from "date-fns";
 import { Notifications } from "@/utils";
 
@@ -45,7 +43,6 @@ const CreateOrEditFundraising = () => {
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FundraisingSchema>({
