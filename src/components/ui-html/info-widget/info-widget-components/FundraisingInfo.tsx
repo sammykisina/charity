@@ -116,7 +116,11 @@ const FundraisingInfo = () => {
               </div>
             </div>
 
-            <div className="flex w-2/5  items-center justify-center  text-[4rem]">
+            <div
+              className={`flex   items-center justify-center  ${
+                percentage > 500 ? "w-1/2 text-[3rem]" : "w-2/5 text-[4rem]"
+              }`}
+            >
               {percentage} %
             </div>
           </div>

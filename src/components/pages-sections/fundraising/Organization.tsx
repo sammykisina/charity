@@ -19,6 +19,7 @@ import {
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { trpc } from "src/utils/trpc";
 import { useQueryClient } from "@tanstack/react-query";
+import { app_utils } from "@/utils";
 
 const Organization = () => {
   /**
@@ -39,6 +40,7 @@ const Organization = () => {
   const { global_fundraising_state } = fundraising_atoms;
   const setShowInfoWidget = useSetRecoilState(show_info_widget_state);
   const setGlobalFundraising = useSetRecoilState(global_fundraising_state);
+  const { generateNumberWithCommas } = app_utils;
 
   const columns = useMemo(
     () => [
@@ -61,11 +63,11 @@ const Organization = () => {
             Filter: CampaignFilter,
           },
           {
-            Header: "Donation Amount",
+            Header: "Donation Amount (Ksh)",
             accessor: "target_donation_amount",
           },
           {
-            Header: "Donated Amount",
+            Header: "Donated Amount (Ksh)",
             accessor: "donated_amount",
           },
           {
@@ -104,8 +106,10 @@ const Organization = () => {
           title: fundraising.title,
           description: fundraising.description,
           end_date: fundraising.end_date,
-          target_donation_amount: fundraising.target_donation_amount,
-          donated_amount: fundraising.donated_amount,
+          target_donation_amount: generateNumberWithCommas(
+            fundraising.target_donation_amount
+          ),
+          donated_amount: generateNumberWithCommas(fundraising.donated_amount),
           campaign: fundraising.campaign,
           action: (
             <Button
