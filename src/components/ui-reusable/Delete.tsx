@@ -24,7 +24,7 @@ const Delete: FC<DeleteProps> = ({ deleteItem, close, isLoading }) => {
       </div>
 
       {/* the decision control buttons */}
-      <div className="mt-10 flex justify-end gap-x-4">
+      <div className="mt-5 flex justify-end gap-x-4 xs:mt-10">
         <Button
           title={isLoading ? <SpinnerLoader color="fill-white" /> : "Delete"}
           type="large"
