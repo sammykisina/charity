@@ -36,7 +36,7 @@ export type Fundraising = {
   target_donation_amount: number;
   donated_amount: number;
   campaign?: string;
-  start_date?: Date;
+  start_date: Date;
   end_date: Date;
 };
 

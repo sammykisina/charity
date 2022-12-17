@@ -57,12 +57,17 @@ const Organization = () => {
             Filter: CampaignFilter,
           },
           {
-            Header: "Donation Amount (Ksh)",
+            Header: "Target Amount (Ksh)",
             accessor: "target_donation_amount",
           },
           {
             Header: "Donated Amount (Ksh)",
             accessor: "donated_amount",
+          },
+          {
+            Header: "Starting Date",
+            accessor: "start_date",
+            Cell: DateCell,
           },
           {
             Header: "Ending Date",
@@ -99,6 +104,7 @@ const Organization = () => {
         {
           title: fundraising.title,
           description: fundraising.description,
+          start_date: fundraising.start_date,
           end_date: fundraising.end_date,
           target_donation_amount: generateNumberWithCommas(
             fundraising.target_donation_amount

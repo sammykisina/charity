@@ -25,7 +25,7 @@ const Fundraising: FC<FundraisingProps> = ({
     generateNumberWithCommas,
     getFundraisingCampaignInfo,
   } = app_utils;
-  
+
   const description_length = description.length;
   const percentage = calculatePercentage(
     target_donation_amount,
@@ -34,11 +34,11 @@ const Fundraising: FC<FundraisingProps> = ({
 
   return (
     <section className="h-[25rem] rounded-[1rem] bg-gray/40 p-2">
-      <div className="h-[10rem] w-[15rem] overflow-hidden ">
+      <div className="h-[10rem] w-full overflow-hidden ">
         <Image
           src={getFundraisingCampaignInfo(campaign || "")?.image || ""}
           alt=""
-          className="h-[10rem] w-[15rem]  rounded-[1.8rem]  object-cover"
+          className="h-[10rem] w-full  rounded-[1.8rem]  object-cover"
         />
       </div>
 

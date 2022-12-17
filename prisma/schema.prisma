@@ -47,6 +47,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          String @default("DONOR")
+  hides         Hide[]
 }
 
 model VerificationToken {
@@ -67,4 +68,26 @@ model Fundraising {
   createdAt                 DateTime  @default(now())   
   start_date                DateTime
   end_date                  DateTime
+}
+
+model Notification {
+  id           String @id @default(cuid())
+  title        String 
+  message      String @db.Text
+  time         DateTime @default(now())  
+  status       String
+  owner        String  
+  hides        Hide[]           
+}
+
+model Hide {
+  id                String @id @default(cuid())
+
+  notification      Notification  @relation(fields: [notification_id], references: [id])
+  notification_id   String
+
+  user              User @relation(fields: [user_id], references: [id])
+  user_id           String
+
+  @@unique([notification_id,user_id])
 }

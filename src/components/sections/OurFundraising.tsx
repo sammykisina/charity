@@ -1,14 +1,22 @@
 import { useRef, useState } from "react";
-import { Icon, ScrollableFundraisingRow } from "@/components";
+import { Icon, ScrollableFundraisingRow, SpinnerLoader } from "@/components";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import { fundraisings } from "@/constants";
+import type { Fundraising } from "src/types/typings.t";
 
-const OurFundraising = () => {
+const OurFundraising = ({
+  featured_fundraising,
+  isRefetching,
+}: {
+  featured_fundraising: Fundraising[] | undefined;
+  isRefetching: boolean;
+}) => {
   /**
    * Section States
    */
   const scrollable_row_ref = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState<boolean>(false);
+
+  console.log("featured_fundraising", featured_fundraising);
 
   /**
    * Component Functions
@@ -39,7 +47,7 @@ const OurFundraising = () => {
           OUR CAMPAIGN
         </h2>
 
-        <div className="flex">
+        <div className="flex gap-2">
           <Icon
             icon={<AiOutlineArrowLeft />}
             icon_wrapper_styles={`text-[1rem] hover:bg-dark hover:text-white rounded-full  ${
@@ -56,11 +64,19 @@ const OurFundraising = () => {
       </div>
 
       {/* The Scrollable Row */}
-      <div className="px-4">
-        <ScrollableFundraisingRow
-          fundraisings={fundraisings}
-          scrollable_row_ref={scrollable_row_ref}
-        />
+      <div className=" px-4">
+        {isRefetching ? (
+          <div className="flex h-[25rem] items-center justify-center">
+            <div className="h-fit w-fit rounded-full bg-dark p-4">
+              <SpinnerLoader color="fill-white" />
+            </div>
+          </div>
+        ) : (
+          <ScrollableFundraisingRow
+            fundraisings={featured_fundraising}
+            scrollable_row_ref={scrollable_row_ref}
+          />
+        )}
       </div>
     </section>
   );

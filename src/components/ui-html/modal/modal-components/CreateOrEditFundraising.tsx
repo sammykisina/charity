@@ -16,17 +16,19 @@ import { trpc } from "src/utils/trpc";
 import { DateRange } from "react-date-range";
 import { addDays, format } from "date-fns";
 import { Notifications } from "@/utils";
-import { Fundraising } from "src/types/typings.t";
 
 const CreateOrEditFundraising = () => {
   /**
    * Component States
    */
-  type FundraisingSchema = z.infer<typeof fundraising_schema>;
+  const utils = trpc.useContext();
   const { is_editing_fundraising_state, global_fundraising_state } =
     fundraising_atoms;
   const { show_create_or_edit_fundraising_modal_state } = modal_atoms;
   const { show_info_widget_state } = info_widget_atoms;
+  const { fundraising_schema } = organization_schemas;
+
+  type FundraisingSchema = z.infer<typeof fundraising_schema>;
   const setShowInfoWidget = useSetRecoilState(show_info_widget_state);
   const [global_fundraising, setGLobalFundraising] = useRecoilState(
     global_fundraising_state
@@ -37,12 +39,10 @@ const CreateOrEditFundraising = () => {
   const setShowCreateOrEditFundraisingModal = useSetRecoilState(
     show_create_or_edit_fundraising_modal_state
   );
-
   const [selected_campaign, setSelectedCampaign] = useState({
     name: "education",
     value: "education",
   });
-  const { fundraising_schema } = organization_schemas;
   const [date_range, setDateRange] = useState<any[]>([
     {
       startDate: new Date(),
@@ -50,9 +50,6 @@ const CreateOrEditFundraising = () => {
       key: "selection",
     },
   ]);
-  // let updated_data: Fundraising | null = null;
-
-  const utils = trpc.useContext();
   const {
     register,
     handleSubmit,
@@ -62,6 +59,9 @@ const CreateOrEditFundraising = () => {
     resolver: zodResolver(fundraising_schema),
   });
 
+  /**
+   * Component Functions
+   */
   const { mutateAsync, isLoading } = trpc.fundraising.create.useMutation({
     onSuccess: () => {
       setIsEditingFundraising(false);
@@ -83,7 +83,6 @@ const CreateOrEditFundraising = () => {
         setIsEditingFundraising(false);
         utils.fundraising.get.invalidate();
         Notifications.successNotification("Fundraising Updated Successfully.");
-        Notifications.successNotification("Fundraising Deleted Successfully.");
         setGLobalFundraising(null);
         setShowInfoWidget(false);
         setShowCreateOrEditFundraisingModal(false);
@@ -107,15 +106,6 @@ const CreateOrEditFundraising = () => {
     description: string,
     target_donation_amount: string
   ) => {
-    // updated_data = {
-    //   title,
-    //   description,
-    //   // target_donation_amount,
-    //   start_date: new Date(format(date_range[0].startDate, "MM/dd/yyyy")),
-    //   end_date: new Date(format(date_range[0].endDate, "MM/dd/yyyy")),
-    //   campaign: selected_campaign.name,
-    // };
-
     updateMutateAsync({
       id: global_fundraising?.id,
       fundraising_schema: {

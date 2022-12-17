@@ -3,7 +3,7 @@ import type { Fundraising as FundraisingType } from "src/types/typings.t";
 import { Fundraising } from "@/components";
 
 interface ScrollableCampaignRowProps {
-  fundraisings: FundraisingType[];
+  fundraisings: FundraisingType[] | undefined;
   scrollable_row_ref: RefObject<HTMLDivElement>;
 }
 

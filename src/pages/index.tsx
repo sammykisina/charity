@@ -11,10 +11,22 @@ import {
   OurFundraising,
   ReadyBanner,
 } from "@/components";
+import { fundraising_atoms } from "@/atoms";
+import { useSetRecoilState } from "recoil";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
-  // const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
-  // const { data: session } = useSession();
+  const LIMIT = 6;
+  const { featured_fundraising_state } = fundraising_atoms;
+  const setFeaturedFundraising = useSetRecoilState(featured_fundraising_state);
+
+  const {
+    data: featuredFundraisings,
+    isFetching,
+    isRefetching,
+  } = trpc.fundraising.getFeatured.useQuery({
+    limit: LIMIT,
+  });
 
   return (
     <>
@@ -28,7 +40,10 @@ const Home: NextPage = () => {
           <Hero />
 
           {/* OurCampaign */}
-          <OurFundraising />
+          <OurFundraising
+            featured_fundraising={featuredFundraisings}
+            isRefetching={isRefetching}
+          />
 
           {/* Who Do We Help */}
           <Campaigns />

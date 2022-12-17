@@ -1,6 +1,6 @@
 import { protectedProcedure, publicProcedure, router } from "../trpc";
 import { organization_schemas } from "@/schemas";
-import { date, number, object, string } from "zod";
+import { number, object, string } from "zod";
 
 const { fundraising_schema } = organization_schemas;
 
@@ -58,6 +58,29 @@ export const fundraisingRoutes = router({
         fundraisings,
         next_cursor,
       };
+    }),
+
+  getFeatured: publicProcedure
+    .input(
+      object({
+        limit: number().min(4).max(6).default(4),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const { prisma } = ctx;
+      const { limit } = input;
+
+      const featured = await prisma.fundraising.findMany({
+        take: limit,
+        orderBy: [{ createdAt: "desc" }],
+        where: {
+          target_donation_amount: {
+            gt: 500000,
+          },
+        },
+      });
+
+      return featured;
     }),
 
   update: protectedProcedure
