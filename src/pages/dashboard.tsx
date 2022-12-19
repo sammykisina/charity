@@ -28,7 +28,7 @@ const Dashboard = () => {
           </div>
         </div>
       ) : (
-        <section className="h-fit">
+        <section>
           {session.user?.role === "ORGANIZATION" ? (
             <OrganizationDashboard />
           ) : (

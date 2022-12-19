@@ -130,7 +130,7 @@ const Organization = () => {
   };
 
   return (
-    <section className="flex flex-col gap-6 px-4">
+    <section className="space-y-2">
       {/* Create New Donation Button */}
       <div className="flex  justify-end">
         <Button
@@ -148,7 +148,7 @@ const Organization = () => {
           data={getFundraisings()}
           columns={columns}
           show_filters={true}
-          table_height="h-[32rem] xs:h-[27.5rem] lg:h-[29.5rem]"
+          table_height="h-[32rem] xs:h-[27.5rem] lg:h-[30rem]"
         />
         <div className=" absolute top-[24px]  right-[16px]">
           {hasNextPage && (

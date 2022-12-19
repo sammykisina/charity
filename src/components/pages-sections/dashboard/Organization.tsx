@@ -165,8 +165,7 @@ const Organization = () => {
   };
 
   return (
-    <section className="px-4">
-      {/* Period Select */}
+    <section className="h-full">
       <Select
         multiple={false}
         options={filter_period_options}
@@ -176,7 +175,7 @@ const Organization = () => {
         setSelected={setSelectedPeriod}
       />
 
-      <section className="mt-2 h-[40.5rem] gap-4 space-y-4 overflow-y-scroll  pt-2  scrollbar-hide xs:h-[37.4rem]">
+      <section className="mt-2 h-[45rem] gap-4 space-y-4 overflow-y-scroll  pt-2  scrollbar-hide  xs:h-[33.3rem]  xl:h-[35.2rem]">
         {/* Top Analysis */}
         <section className="grid grid-cols-1 gap-2 xs:grid-cols-2 sm:flex sm:flex-col sm:gap-4 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3">
           <OrgAnalysisCard

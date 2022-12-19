@@ -7,7 +7,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 const Hero = () => {
   return (
-    <section id="hero" className="pt-2 duration-300 lg:ml-4">
+    <section className="pt-2 duration-300 lg:ml-4">
       {/* Titles */}
       <div className="mx-3 flex flex-col gap-[3rem] rounded-[2rem] border border-dark px-4 duration-300 sm:px-5 sm:py-2  ">
         {/* One */}

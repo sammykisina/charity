@@ -54,7 +54,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
         </div>
 
         {/* The Main */}
-        <main className="sm:ml-[220px]">{children}</main>
+        <main className="h-[45rem] overflow-y-scroll  scrollbar-hide  xs:h-[39.5rem] sm:ml-[220px] xl:h-[39.5rem]">
+          {children}
+        </main>
       </div>
 
       {/* Modals */}
