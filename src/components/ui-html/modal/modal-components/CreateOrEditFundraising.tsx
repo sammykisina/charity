@@ -16,6 +16,7 @@ import { trpc } from "src/utils/trpc";
 import { DateRange } from "react-date-range";
 import { addDays, format } from "date-fns";
 import { Notifications } from "@/utils";
+import { fundraisingNotificationQuotes } from "@/constants";
 
 const CreateOrEditFundraising = () => {
   /**
@@ -62,12 +63,35 @@ const CreateOrEditFundraising = () => {
   /**
    * Component Functions
    */
+
+  const { mutateAsync: createNotificationMutateAsync } =
+    trpc.notification.create.useMutation({
+      onSuccess: () => {
+        console.log("notification create");
+      },
+
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+
   const { mutateAsync, isLoading } = trpc.fundraising.create.useMutation({
     onSuccess: () => {
       setIsEditingFundraising(false);
       utils.fundraising.get.invalidate();
       Notifications.successNotification("Fundraising Created Successfully.");
       setShowCreateOrEditFundraisingModal(false);
+
+      // Create Notification
+      createNotificationMutateAsync({
+        title: "Fundraising",
+        message:
+          fundraisingNotificationQuotes[
+            Math.floor(Math.random() * fundraisingNotificationQuotes.length)
+          ] || "",
+        campaign: selected_campaign.value,
+        owner: "donor",
+      });
     },
     onError: (error) => {
       setIsEditingFundraising(false);
