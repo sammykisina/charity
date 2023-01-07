@@ -14,9 +14,9 @@ const Notifications: FC<NotificationsProps> = ({ notifications }) => {
   const { getNotificationIcon } = app_utils;
 
   return (
-    <section className="flex flex-col gap-2 py-2 px-4">
+    <section>
       {notifications.length > 0 ? (
-        <div>
+        <div className="flex flex-col gap-2 py-2 px-4">
           {notifications.map((notification, notification_index) => (
             <div
               key={notification_index}
