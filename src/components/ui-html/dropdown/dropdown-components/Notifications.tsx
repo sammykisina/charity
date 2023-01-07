@@ -58,7 +58,7 @@ const Notifications: FC<NotificationsProps> = ({ notifications }) => {
         </div>
       ) : (
         <div className="whitespace-nowrap font-semibold text-dark/50">
-          You Don't Have New Notifications Yet.
+          You Don&apos;t Have New Notifications Yet.
         </div>
       )}
     </section>
