@@ -26,7 +26,7 @@ const Delete: FC<DeleteProps> = ({ deleteItem, close, isLoading }) => {
       <div className="mt-5 flex justify-end gap-x-4 xs:mt-10">
         <Button
           title={isLoading ? <SpinnerLoader color="fill-white" /> : "Delete"}
-          type="large"
+          type="medium"
           intent="danger"
           disabled={isLoading}
           purpose={deleteItem}

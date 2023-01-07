@@ -68,7 +68,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
       <Modal
         modal_state={show_delete_fundraising_modal}
-        modal_styles="w-[90vw] h-[14.2rem] duration-300"
+        modal_styles="w-[90vw] h-[13.5rem] duration-300"
         component={<DeleteFundraising />}
       />
 
