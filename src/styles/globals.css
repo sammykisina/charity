@@ -69,7 +69,7 @@
 
   /* drop down */
   .dropdown_content {
-    @apply absolute top-[calc(100%+5px)] right-0 overflow-hidden rounded-xl  border border-dark bg-white px-[2px] py-[10px] shadow-md;
+    @apply absolute top-[calc(100%+5px)] right-0 overflow-hidden rounded-xl   bg-white px-[2px] py-[10px] shadow;
   }
   .dropdown_content {
     transform-origin: top right;

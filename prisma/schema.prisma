@@ -77,7 +77,7 @@ model Notification {
   time         DateTime   @default(now())  
   status       String?    @default("unread")
   owner        String  
-  campaign     String?    @default("organization")
+  type         String
   hides        HideNotification[]           
 }
 

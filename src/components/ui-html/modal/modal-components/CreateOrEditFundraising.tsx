@@ -68,6 +68,7 @@ const CreateOrEditFundraising = () => {
     trpc.notification.create.useMutation({
       onSuccess: () => {
         console.log("notification create");
+        utils.notification.get.invalidate();
       },
 
       onError: (error) => {
@@ -85,12 +86,10 @@ const CreateOrEditFundraising = () => {
       // Create Notification
       createNotificationMutateAsync({
         title: "Fundraising",
-        message:
-          fundraisingNotificationQuotes[
-            Math.floor(Math.random() * fundraisingNotificationQuotes.length)
-          ] || "",
-        campaign: selected_campaign.value,
+        message: "A fundraising was created.",
+        type: "fundraising",
         owner: "donor",
+        time: new Date(),
       });
     },
     onError: (error) => {

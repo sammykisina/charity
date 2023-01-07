@@ -1,10 +1,11 @@
-import { object, string } from "zod";
+import { date, object, string } from "zod";
 
 const notification_schema = object({
   title: string(),
   message: string().min(15).max(60),
   owner: string(), // donor, organization,uid
-  campaign: string().optional(),
+  type: string(), // fundraising, event, donation
+  time: date(),
 });
 
 const shared_schemas = {

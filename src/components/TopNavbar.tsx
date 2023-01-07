@@ -17,6 +17,7 @@ import {
   HiOutlineEnvelope,
   HiOutlineUser,
 } from "react-icons/hi2";
+import { queries } from "@/utils";
 
 const TopNavBar = () => {
   /**
@@ -30,6 +31,12 @@ const TopNavBar = () => {
     useState<boolean>(false);
   const [show_messages_dropdown, setShowMessagesDropdown] =
     useState<boolean>(false);
+  const { getNotifications } = queries;
+  const { notifications, hasNextPage, fetchNextPage, isFetching } =
+    getNotifications(session?.user?.role);
+  const unread_notifications = notifications.filter(
+    (notification) => notification.status === "unread"
+  );
 
   return (
     <header className="flex items-center justify-between  p-4 sm:ml-[220px] ">
@@ -61,9 +68,12 @@ const TopNavBar = () => {
             <div className="flex items-center gap-x-1">
               <Dropdown
                 icon={<HiOutlineBell />}
-                dropdown_component={<Notifications />}
+                dropdown_component={
+                  <Notifications notifications={notifications} />
+                }
                 display_state={show_notification_dropdown}
                 setDisplayState={setShowNotificationDropdown}
+                badge={unread_notifications.length}
               />
 
               <Dropdown

@@ -1,5 +1,7 @@
 import { campaigns } from "@/constants";
 import { type StaticImageData } from "next/image";
+import { ReactNode } from "react";
+import notificationIcons from "src/constants/notificationIcons";
 import type { Campaign } from "src/types/typings.t";
 
 export const classNames = (...classes: any): string => {
@@ -44,10 +46,22 @@ const getFundraisingCampaignInfo = (campaign_id: string): Campaign | null => {
   return campaignInfo;
 };
 
+const getNotificationIcon = (type: string) => {
+  let icon: ReactNode = null;
+
+  switch (type) {
+    case "fundraising":
+      icon = notificationIcons.fundraising;
+  }
+
+  return icon;
+};
+
 const app_utils = {
   calculatePercentage,
   generateNumberWithCommas,
   getFundraisingCampaignInfo,
+  getNotificationIcon,
 };
 
 export default app_utils;

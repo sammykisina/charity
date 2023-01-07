@@ -62,3 +62,12 @@ export type AnalysisData = {
   difference: string;
   filter: string;
 };
+
+export type Notification = {
+  title: string;
+  message: string;
+  time: Date;
+  status: string | null;
+  owner: string;
+  type: string;
+};
