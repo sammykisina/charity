@@ -2,6 +2,7 @@ import { Icon, SpinnerLoader, Title } from "@/components";
 import { app_utils, queries } from "@/utils";
 import { format, isEqual } from "date-fns";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import React, { type FC } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { type Notification } from "src/types/typings.t";
@@ -48,11 +49,15 @@ const Notifications = () => {
   /**
    * Page States
    */
-  const notification_wrapper_styles =
-    "w-full space-y-3 rounded-xl border border-yellow px-3 py-2";
+  const { push } = useRouter();
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      push("auth/signin");
+    },
+  });
 
   const { getNotifications } = queries;
-  const { data: session } = useSession();
   const { notifications, isFetching } = getNotifications(
     session?.user?.role,
     50
@@ -72,6 +77,9 @@ const Notifications = () => {
         new Date(format(notification.time, "EE, MMM d, yyy"))
       )
   );
+
+  const notification_wrapper_styles =
+    "w-full space-y-3 rounded-xl border border-yellow px-3 py-2";
 
   return (
     <section className="mt-2 flex flex-col gap-2 px-3">
