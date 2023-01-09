@@ -32,10 +32,10 @@ const Dropdown: FC<DropdownProps> = ({
 
   return (
     <div className="relative z-40" ref={dropdown_component_ref}>
-      <div className="group relative">
+      <div className="group">
         <Icon
           icon={icon}
-          icon_wrapper_styles={`relative p-2 z-30 topnav_bar_icon ${
+          icon_wrapper_styles={`p-2 z-30 topnav_bar_icon relative ${
             display_state && "bg-dark text-white"
           }`}
           purpose={() => setDisplayState((prev) => !prev)}
@@ -43,9 +43,7 @@ const Dropdown: FC<DropdownProps> = ({
 
         {badge
           ? badge > 0 && (
-              <div className="absolute -top-1 right-0 z-30 flex h-[20px] w-[20px] items-center justify-center rounded-full  bg-dark p-2  text-sm text-white duration-300 group-hover:bg-white group-hover:text-dark">
-                {badge}
-              </div>
+              <div className="absolute top-[0.5rem] right-[0.5rem] z-30 h-2 w-2 items-center justify-center rounded-full bg-red-500 text-sm duration-300 group-hover:text-dark" />
             )
           : ""}
       </div>

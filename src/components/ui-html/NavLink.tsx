@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { FC } from "react";
 import { useSetRecoilState } from "recoil";
 import { showSidebarState } from "src/atoms/AppAtom";
-import useDetectScroll from "src/hooks/useDetectScroll";
 import { type Route } from "src/types/typings.t";
 
 const navlink_styles = cva(
@@ -27,16 +26,29 @@ const navlink_styles = cva(
 
 interface NavLinkProps extends VariantProps<typeof navlink_styles> {
   route: Route;
+  moreActions?: () => void;
 }
 
-const NavLink: FC<NavLinkProps> = ({ full_width, type, route, active }) => {
+const NavLink: FC<NavLinkProps> = ({
+  full_width,
+  type,
+  route,
+  moreActions,
+  active,
+}) => {
   /**
    * Component States
    */
   const setShowSidebar = useSetRecoilState(showSidebarState);
 
   return (
-    <Link href={route.to} onClick={() => setShowSidebar(false)}>
+    <Link
+      href={route.to}
+      onClick={() => {
+        setShowSidebar(false);
+        moreActions && moreActions();
+      }}
+    >
       <div className={navlink_styles({ full_width, type, active })}>
         <div className={`${active && "text-white/50 duration-300"}`}>
           {active ? route.active_icon : route.inactive_icon}

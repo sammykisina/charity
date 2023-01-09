@@ -1,11 +1,9 @@
-import { useSession } from "next-auth/react";
 import { trpc } from "./trpc";
 
-const getNotifications = (owner: string) => {
-  const LIMIT = 10;
+const getNotifications = (owner: string, limit: number) => {
   const { data, hasNextPage, fetchNextPage, isFetching } =
     trpc.notification.get.useInfiniteQuery(
-      { limit: LIMIT, owner: owner || "" },
+      { limit: limit, owner: owner || "" },
       { getNextPageParam: (lastPage) => lastPage.next_cursor }
     );
   const notifications = data?.pages.flatMap((page) => page.notifications) ?? [];

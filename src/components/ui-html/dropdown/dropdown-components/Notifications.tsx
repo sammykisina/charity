@@ -3,47 +3,75 @@ import { type Notification } from "src/types/typings.t";
 import Icon from "../../Icon";
 import { app_utils } from "@/utils";
 import { format } from "date-fns";
-import { NavLink } from "@/components";
+import { NavLink, SpinnerLoader } from "@/components";
+import type { SetterOrUpdater } from "recoil";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import updateLocal from "dayjs/plugin/updateLocale";
 
 type NotificationsProps = {
   notifications: Notification[];
+  setShowNotificationDropdown: SetterOrUpdater<boolean>;
+  isFetching: boolean;
 };
 
-const Notifications: FC<NotificationsProps> = ({ notifications }) => {
-  console.log("notifications", notifications);
+dayjs.extend(relativeTime);
+dayjs.extend(updateLocal);
+dayjs.updateLocale("en", {
+  relativeTime: {
+    future: "in %s",
+    past: "%s ago",
+    s: "1s",
+    m: "1m",
+    mm: "%dm",
+    h: "1h",
+    hh: "%dh",
+    d: "1d",
+    dd: "%dh",
+    M: "1M",
+    MM: "%dM",
+    y: "1y",
+    yy: "%dy",
+  },
+});
+
+const Notifications: FC<NotificationsProps> = ({
+  notifications,
+  setShowNotificationDropdown,
+  isFetching,
+}) => {
   const { getNotificationIcon } = app_utils;
+
+  if (isFetching)
+    return (
+      <section className="flex h-[100px] w-[150px] justify-center">
+        <SpinnerLoader />
+      </section>
+    );
 
   return (
     <section>
       {notifications.length > 0 ? (
-        <div className="flex flex-col gap-2 py-2 px-4">
+        <div className="flex flex-col gap-3 px-2">
           {notifications.map((notification, notification_index) => (
             <div
               key={notification_index}
-              className="flex cursor-pointer flex-row gap-2 rounded-md border border-yellow/20 px-4 py-1 hover:bg-yellow/20"
+              className="flex cursor-pointer items-center gap-2 rounded-md py-1  px-2 hover:bg-yellow/20"
             >
               <Icon
                 icon={getNotificationIcon(notification.type)}
                 icon_wrapper_styles="w-fit h-fit text-yellow"
               />
+
               <div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    {notification.status === "unread" && (
-                      <div className="h-2 w-2 rounded-full bg-yellow" />
-                    )}
-                    <span className="font-semibold text-dark/50">
-                      {notification.title}
-                    </span>
-                  </div>
+                <p className="whitespace-nowrap text-base font-semibold text-dark/80">
+                  {notification.message}
+                </p>
 
-                  <p className=" whitespace-nowrap text-sm text-dark">
-                    {notification.message}
-                  </p>
-                </div>
-
-                <div className="mt-2 w-full text-end text-xs font-bold">
-                  {format(notification.time, "EE, MMM d, yyy  hh:mm")}
+                <div className="flex items-center gap-1 text-xs text-dark/40">
+                  <span>{dayjs(notification.time).fromNow()}</span>
+                  <div className="h-1 w-1 rounded-full bg-dark/40" />
+                  <span className="font-mono">{notification.title}</span>
                 </div>
               </div>
             </div>
@@ -53,6 +81,7 @@ const Notifications: FC<NotificationsProps> = ({ notifications }) => {
               type="medium"
               route={{ to: "/notifications", name: "View All" }}
               active
+              moreActions={() => setShowNotificationDropdown(false)}
             />
           </div>
         </div>

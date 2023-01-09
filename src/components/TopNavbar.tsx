@@ -32,8 +32,10 @@ const TopNavBar = () => {
   const [show_messages_dropdown, setShowMessagesDropdown] =
     useState<boolean>(false);
   const { getNotifications } = queries;
-  const { notifications, hasNextPage, fetchNextPage, isFetching } =
-    getNotifications(session?.user?.role);
+  const { notifications, isFetching } = getNotifications(
+    session?.user?.role,
+    3
+  );
   const unread_notifications = notifications.filter(
     (notification) => notification.status === "unread"
   );
@@ -45,7 +47,7 @@ const TopNavBar = () => {
         <div>
           <Icon
             icon={<HiOutlineMenuAlt4 />}
-            icon_wrapper_styles="text-[1.5rem] text-dark/50 hover:bg-dark hover:text-white rounded-full duration-300 sm:hidden"
+            icon_wrapper_styles="text-[1.5rem] text-dark/50 hover:bg-dark hover:text-white rounded-full duration-300 sm:hidden p-1"
             purpose={() => setShowSidebar(true)}
           />
         </div>
@@ -69,7 +71,11 @@ const TopNavBar = () => {
               <Dropdown
                 icon={<HiOutlineBell />}
                 dropdown_component={
-                  <Notifications notifications={notifications} />
+                  <Notifications
+                    notifications={unread_notifications}
+                    setShowNotificationDropdown={setShowNotificationDropdown}
+                    isFetching={isFetching}
+                  />
                 }
                 display_state={show_notification_dropdown}
                 setDisplayState={setShowNotificationDropdown}
