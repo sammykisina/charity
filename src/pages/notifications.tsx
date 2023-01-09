@@ -87,7 +87,7 @@ const Notifications = () => {
     "w-full space-y-3 rounded-xl border border-yellow px-3 py-2";
 
   return (
-    <section className="mt-2 flex h-[44.5rem] flex-col gap-2  overflow-y-scroll  pl-2 scrollbar-hide xs:h-[39rem] xl:h-[39rem]">
+    <section className="mt-2 flex h-[44.5rem] flex-col gap-2  overflow-y-scroll  px-2 scrollbar-hide xs:h-[39rem] xl:h-[39rem]">
       {/* Title */}
       <Title title="Notifications" title_styles="text-lg" />
 
@@ -134,7 +134,7 @@ const Notifications = () => {
                 <SpinnerLoader />
               </div>
             ) : earlier_notifications?.length !== 0 ? (
-              <div className="flex h-[17rem] flex-col gap-2 overflow-y-scroll  py-2 scrollbar-hide">
+              <div className="flex h-[18rem] flex-col gap-2 overflow-y-scroll  py-2 scrollbar-hide">
                 {earlier_notifications.map(
                   (notification, notification_index) => (
                     <SingleNotification
