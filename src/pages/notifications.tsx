@@ -49,44 +49,49 @@ const Notifications = () => {
   /**
    * Page States
    */
-  const { push } = useRouter();
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      push("auth/signin");
-    },
-  });
+  // const { push } = useRouter();
+  // const { data: session } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     push("auth/signin");
+  //   },
+  // });
 
-  const { getNotifications } = queries;
-  const { notifications, isFetching } = getNotifications(
-    session?.user?.role,
-    50
-  );
+  // const { getNotifications } = queries;
+  // const { notifications, isFetching } = getNotifications(
+  //   session?.user?.role,
+  //   50
+  // );
 
-  const todays_notifications = notifications.filter((notification) =>
-    isEqual(
-      new Date(format(new Date(), "EE, MMM d, yyy")),
-      new Date(format(notification.time, "EE, MMM d, yyy"))
-    )
-  );
+  // const todays_notifications = notifications.filter((notification) =>
+  //   isEqual(
+  //     new Date(format(new Date(), "EE, MMM d, yyy")),
+  //     new Date(format(notification.time, "EE, MMM d, yyy"))
+  //   )
+  // );
+  const todays_notifications: any[] = [];
 
-  const earlier_notifications = notifications.filter(
-    (notification) =>
-      !isEqual(
-        new Date(format(new Date(), "EE, MMM d, yyy")),
-        new Date(format(notification.time, "EE, MMM d, yyy"))
-      )
-  );
+  // const earlier_notifications = notifications.filter(
+  //   (notification) =>
+  //     !isEqual(
+  //       new Date(format(new Date(), "EE, MMM d, yyy")),
+  //       new Date(format(notification.time, "EE, MMM d, yyy"))
+  //     )
+  // );
+
+  const earlier_notifications: any[] = [];
+
+  const isFetching = true;
 
   const notification_wrapper_styles =
     "w-full space-y-3 rounded-xl border border-yellow px-3 py-2";
 
   return (
-    <section className="mt-2 flex flex-col gap-2 px-3">
+    <section className="mt-2 flex h-[44.5rem] flex-col gap-2  pl-2 scrollbar-hide xs:h-[39rem] xl:h-[37rem]">
       {/* Title */}
       <Title title="Notifications" title_styles="text-lg" />
 
-      <div className="flex h-[45rem]  flex-col  gap-5 space-y-4 overflow-y-scroll  pt-2 scrollbar-hide xs:h-[37rem] xl:h-[37rem]">
+      <div className="flex flex-col  gap-5 space-y-4 overflow-y-scroll  pt-2 ">
         {/* Todays Notifications */}
         <div className={`h-[14rem] ${notification_wrapper_styles}`}>
           {/* Title */}
@@ -118,7 +123,7 @@ const Notifications = () => {
         </div>
 
         {/* Other Days Notifications */}
-        <div className={`h-[20rem] ${notification_wrapper_styles}`}>
+        <div className={`h-[24rem] ${notification_wrapper_styles}`}>
           {/* Title */}
           <Title title="Earlier" title_styles="text-base" />
 
