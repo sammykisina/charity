@@ -1,4 +1,4 @@
-import { Icon, Title } from "@/components";
+import { Icon, SpinnerLoader, Title } from "@/components";
 import { app_utils, queries } from "@/utils";
 import { format, isEqual } from "date-fns";
 import { useSession } from "next-auth/react";
@@ -86,7 +86,11 @@ const Notifications = () => {
 
           {/* Notifications */}
           <div>
-            {todays_notifications?.length !== 0 ? (
+            {isFetching ? (
+              <div className="flex h-[11rem] items-center justify-center">
+                <SpinnerLoader />
+              </div>
+            ) : todays_notifications?.length !== 0 ? (
               <div className="flex h-[11rem] flex-col gap-2 overflow-y-scroll py-2 scrollbar-hide">
                 {todays_notifications.map(
                   (notification, notification_index) => (
@@ -112,7 +116,11 @@ const Notifications = () => {
 
           {/* Notifications */}
           <div>
-            {earlier_notifications?.length !== 0 ? (
+            {isFetching ? (
+              <div className="flex h-[11rem] items-center justify-center">
+                <SpinnerLoader />
+              </div>
+            ) : earlier_notifications?.length !== 0 ? (
               <div className="flex h-[17rem] flex-col gap-2 overflow-y-scroll  py-2 scrollbar-hide">
                 {earlier_notifications.map(
                   (notification, notification_index) => (
