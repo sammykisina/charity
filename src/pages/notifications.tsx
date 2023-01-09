@@ -134,7 +134,7 @@ const Notifications = () => {
                 <SpinnerLoader />
               </div>
             ) : earlier_notifications?.length !== 0 ? (
-              <div className="flex h-[19rem] flex-col gap-2 overflow-y-scroll  py-2 scrollbar-hide">
+              <div className="flex h-[19.5rem] flex-col gap-2 overflow-y-scroll  py-2 scrollbar-hide">
                 {earlier_notifications.map(
                   (notification, notification_index) => (
                     <SingleNotification
