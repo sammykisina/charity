@@ -123,7 +123,9 @@ const Notifications = () => {
         </div>
 
         {/* Other Days Notifications */}
-        <div className={`h-[24rem] ${notification_wrapper_styles}`}>
+        <div
+          className={`h-[24rem] xs:h-[20.5rem]  ${notification_wrapper_styles}`}
+        >
           {/* Title */}
           <Title title="Earlier" title_styles="text-base" />
 
@@ -134,7 +136,7 @@ const Notifications = () => {
                 <SpinnerLoader />
               </div>
             ) : earlier_notifications?.length !== 0 ? (
-              <div className="flex h-[19.5rem] flex-col gap-2 overflow-y-scroll  py-2 scrollbar-hide">
+              <div className="flex h-[19.5rem] flex-col gap-2 overflow-y-scroll py-2  scrollbar-hide xs:h-[17rem]">
                 {earlier_notifications.map(
                   (notification, notification_index) => (
                     <SingleNotification
