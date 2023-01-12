@@ -48,6 +48,7 @@ model User {
   sessions      Session[]
   role          String @default("DONOR")
   hides         HideNotification[]
+  reads         ReadNotification[]
 }
 
 model VerificationToken {
@@ -78,16 +79,27 @@ model Notification {
   status       String?    @default("unread")
   owner        String  
   type         String
-  hides        HideNotification[]           
+  hides        HideNotification[] 
+  reads        ReadNotification[]          
+}
+
+model ReadNotification {
+  id                String         @id @default(cuid())
+  notification      Notification   @relation(fields: [notification_id], references: [id])
+  notification_id   String
+  user              User           @relation(fields: [user_id], references: [id])
+  user_id           String
+
+  @@unique([notification_id, user_id])
 }
 
 model HideNotification {
-  id                String @id @default(cuid())
+  id                String         @id @default(cuid())
 
-  notification      Notification  @relation(fields: [notification_id], references: [id])
+  notification      Notification   @relation(fields: [notification_id], references: [id])
   notification_id   String
 
-  user              User @relation(fields: [user_id], references: [id])
+  user              User           @relation(fields: [user_id], references: [id])
   user_id           String
 
   @@unique([notification_id,user_id])

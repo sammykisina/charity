@@ -36,9 +36,12 @@ const TopNavBar = () => {
     session?.user?.role,
     3
   );
+
   const unread_notifications = notifications.filter(
-    (notification) => notification.status === "unread"
+    (notification) => notification.reads.length <= 0
   );
+
+  console.log("unread_notifications", unread_notifications);
 
   return (
     <header className="flex items-center justify-between  p-4 sm:ml-[220px] ">

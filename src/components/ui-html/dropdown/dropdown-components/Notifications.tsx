@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import React, { useMemo, type FC } from "react";
 import { type Notification } from "src/types/typings.t";
 import Icon from "../../Icon";
 import { app_utils } from "@/utils";
@@ -8,6 +8,7 @@ import type { SetterOrUpdater } from "recoil";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocal from "dayjs/plugin/updateLocale";
+import { trpc } from "src/utils/trpc";
 
 type NotificationsProps = {
   notifications: Notification[];
@@ -40,7 +41,34 @@ const Notifications: FC<NotificationsProps> = ({
   setShowNotificationDropdown,
   isFetching,
 }) => {
+  /**
+   * Component States
+   */
   const { getNotificationIcon } = app_utils;
+  // const read = trpc.notification.read.useMutation({
+  //   onSuccess: () => {
+  //     console.log("all read");
+  //   },
+  // }).mutateAsync;
+  const { mutateAsync } = trpc.notification.read.useMutation({
+    onSuccess: () => {
+      console.log("all read");
+    },
+  });
+
+  /**
+   * Component Functions
+   */
+  const notification_ids = useMemo(() => {
+    const notification_ids = new Set<string>();
+
+    notifications?.forEach((notification) => {
+      // const record_found = prisma?.readNotification.;
+      notification_ids.add(notification.id || "");
+    });
+
+    return [...notification_ids.values()];
+  }, [notifications]);
 
   if (isFetching)
     return (
@@ -81,7 +109,10 @@ const Notifications: FC<NotificationsProps> = ({
               type="medium"
               route={{ to: "/notifications", name: "View All" }}
               active
-              moreActions={() => setShowNotificationDropdown(false)}
+              moreActions={() => {
+                setShowNotificationDropdown(false);
+                mutateAsync({ notification_ids: notification_ids });
+              }}
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { shared_schemas } from "@/schemas";
 import { protectedProcedure, router } from "../trpc";
-import { number, object, string } from "zod";
+import { array, number, object, string } from "zod";
 
 const { notification_schema } = shared_schemas;
 
@@ -32,6 +32,7 @@ export const notificationRoutes = router({
     )
     .query(async ({ ctx, input }) => {
       const { prisma } = ctx;
+      const user_id = ctx.session.user.id;
       const { limit, cursor, owner } = input;
 
       const notifications = await prisma.notification.findMany({
@@ -41,6 +42,16 @@ export const notificationRoutes = router({
         where: {
           owner: {
             equals: owner,
+          },
+        },
+        include: {
+          reads: {
+            where: {
+              user_id,
+            },
+            select: {
+              user_id: true,
+            },
           },
         },
       });
@@ -57,5 +68,32 @@ export const notificationRoutes = router({
         notifications,
         next_cursor,
       };
+    }),
+
+  read: protectedProcedure
+    .input(object({ notification_ids: array(string()) }))
+    .mutation(async ({ ctx, input }) => {
+      const { prisma } = ctx;
+      const user_id = ctx.session.user.id;
+      const { notification_ids } = input;
+
+      if (notification_ids.length > 0) {
+         notification_ids.map((notification_id) => {
+           prisma.readNotification.upsert({
+             where: {
+               notification_id_user_id: {
+                 notification_id: notification_id,
+                 user_id: user_id,
+               },
+             },
+             create: {
+               user_id: user_id,
+               notification_id: notification_id,
+             },
+             update: {},
+           });
+         });
+      }
+     
     }),
 });
