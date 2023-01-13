@@ -5,7 +5,7 @@ import { MdVerified } from "react-icons/md";
 import { useSetRecoilState } from "recoil";
 import { useClickOutside } from "@/hooks";
 import { showSidebarState } from "src/atoms/AppAtom";
-import { Button, Icon, Logo, NavLink } from "@/components";
+import { Button, Icon, Logo, NavLink, Title } from "@/components";
 import { useSession, signOut } from "next-auth/react";
 import { routes } from "@/routes";
 import { useRouter } from "next/router";
@@ -26,7 +26,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className="relative z-40 flex h-screen flex-col justify-between bg-dark p-4 pt-[3.1rem] duration-300"
+      className="relative z-40 flex h-screen flex-col justify-between bg-dark p-4 pt-[2.8rem] duration-300"
       ref={sidebar_ref}
     >
       <Icon
@@ -36,20 +36,18 @@ const Sidebar = () => {
       />
       <div>
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-full border border-white">
-            <Logo logo_styles="text-white " />
-          </div>
+        <div className="flex flex-1 flex-col items-center">
+          {/* <Title title="Sam" title_styles="text-white " /> */}
+          <Logo />
 
-          <div className=" flex flex-1 flex-col">
-            <div className="flex items-center whitespace-normal text-sm">
-              <span className="text-white">Sam Donation</span>
-              <Icon
-                icon={<MdVerified className="h-4 w-5 text-green-500" />}
-                purpose={() => setShowSidebar(false)}
-              />
-            </div>
-            <span className="text-sm text-white/40">Verified Foundation</span>
+          <div className="mt-2 flex gap-2">
+            <span className="items-center whitespace-nowrap text-sm text-white/40">
+              Verified Foundation
+            </span>
+            <Icon
+              icon={<MdVerified className="h-5 w-5 text-green-500" />}
+              purpose={() => setShowSidebar(false)}
+            />
           </div>
         </div>
 
