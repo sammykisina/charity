@@ -26,9 +26,7 @@ const SignIn = ({
   return (
     <section className="mt-2 flex h-[35rem] items-center justify-center px-1">
       <section className="flex flex-col items-center justify-center gap-14">
-        <div className="flex h-[3rem] w-[3rem] items-center justify-center rounded-full border border-dark bg-white">
-          <Logo />
-        </div>
+        <Logo logo_styles="text-dark" extra_styles="bg-dark" />
 
         {providers
           ? Object.values(providers).map((provider, provider_index) => {

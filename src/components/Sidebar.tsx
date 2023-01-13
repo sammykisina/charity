@@ -38,7 +38,7 @@ const Sidebar = () => {
         {/* Logo */}
         <div className="flex flex-1 flex-col items-center">
           {/* <Title title="Sam" title_styles="text-white " /> */}
-          <Logo />
+          <Logo logo_styles="text-white" extra_styles="bg-white" />
 
           <div className="mt-2 flex gap-2">
             <span className="items-center whitespace-nowrap text-sm text-white/40">
