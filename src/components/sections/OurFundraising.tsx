@@ -16,8 +16,6 @@ const OurFundraising = ({
   const scrollable_row_ref = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState<boolean>(false);
 
-  console.log("featured_fundraising", featured_fundraising);
-
   /**
    * Component Functions
    */
@@ -47,7 +45,7 @@ const OurFundraising = ({
           OUR CAMPAIGN
         </h2>
 
-        <div className="flex gap-2">
+        <div className={`${featured_fundraising ? "flex gap-2" : "hidden"}`}>
           <Icon
             icon={<AiOutlineArrowLeft />}
             icon_wrapper_styles={`text-[1rem] hover:bg-dark hover:text-white rounded-full  ${
@@ -71,11 +69,15 @@ const OurFundraising = ({
               <SpinnerLoader color="fill-white" />
             </div>
           </div>
-        ) : (
+        ) : featured_fundraising ? (
           <ScrollableFundraisingRow
             fundraisings={featured_fundraising}
             scrollable_row_ref={scrollable_row_ref}
           />
+        ) : (
+          <div className="flex h-[25rem] items-center justify-center rounded-[1rem] border border-gray font-semibold tracking-wider">
+            No Featured Fundraising or Events Created Yet.
+          </div>
         )}
       </div>
     </section>
